@@ -29,7 +29,14 @@ modImport.page.createImport = function(config) {
             process: 'import',
             text: 'Start import', 
             handler: function() {
-                Ext.getCmp('modimport-panel-import').form.submit();
+                Ext.getCmp('modimport-panel-import').form.submit({
+                    success: function(f, a) {
+                        alert('It worked! '+a.result.message);
+                    },
+                    failure: function(f, a) {
+                        alert('Oops.. '+a.result.message);
+                    }
+                });
             }
         }/*,{
             process: 'cancel', text: _('cancel'), params: {a:MODx.action['welcome']}

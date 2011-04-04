@@ -40,6 +40,8 @@ class modImport {
             'cssUrl' => $assetsUrl.'css/',
             'assetsUrl' => $assetsUrl,
             'connectorUrl' => $assetsUrl.'connector.php',
+            
+            'seperator' => ';'
         ),$config);
     }
     

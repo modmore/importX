@@ -22,7 +22,57 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-
-return $modx->error->failure('Not yet added y\'know.');
-
+    
+    $modimport = &$modx->modimport;
+    
+    $sep = $modimport->config['seperator'];
+    if ($sep == '') { $sep = ';'; }
+    
+    $parent = (int)$_POST['parent'];
+    if (!is_numeric($parent)) { return $modx->error->failure('Parent not numeric.'); }
+    if ($parent < 0) { return $modx->error->failure('Parent needs to be greater than zero.'); }
+    
+    $csv = $_POST['csv'];
+    if (strlen($csv) < 10) { return $modx->error->failure('Invalid CSV post-value.'); }
+    
+    $lines = explode("\n",$csv);
+    if (count($lines) <= 1) { return $modx->error->failure('Not enough information available. Needs two lines at least!'); }
+    
+    $firstline = explode($sep,$lines[0]);
+    $firstlinecount = count($firstline);
+    unset($lines[0]);
+    
+    foreach ($lines as $line => $lineval) {
+        $curline = explode($sep,$lineval);
+        if ($firstlinecount != count($curline)) {
+            // Make this return to the log, instead of halting all processes
+            return $modx->error->failure('Element mismatch. Perhaps you have used your seperator in the CSV on line '.$line.'?'.$firstlinecount.' - '.count($curline));
+        }
+        $lines[$line] = array_combine($firstline,$curline);
+    }
+    
+    foreach ($lines as $line) {
+        $nr = $modx->newObject('modResource');
+        $nr->fromArray($line);
+        if (!is_numeric($line['parent'])) { $nr->set('parent',$parent); }
+        
+        if ($nr->save()) { return $modx->error->success('It seemed to work..'); }
+        else { return $modx->error->failure('Saving failed.'); }
+    }
+    
+    
+    
+    return $modx->error->success(print_r($lines,true));
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    return $modx->error->failure('Unknown error.');
+    
 ?>
