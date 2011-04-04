@@ -56,7 +56,7 @@
         $nr->fromArray($line);
         if (!is_numeric($line['parent'])) { $nr->set('parent',$parent); }
         
-        if ($nr->save()) { return $modx->error->success('It seemed to work..'); }
+        if ($nr->save()) { /*return $modx->error->success('It seemed to work..');*/ }
         else { return $modx->error->failure('Saving failed.'); }
     }
     
