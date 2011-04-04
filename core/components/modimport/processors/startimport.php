@@ -29,14 +29,14 @@
     if ($sep == '') { $sep = ';'; }
     
     $parent = (int)$_POST['parent'];
-    if (!is_numeric($parent)) { return $modx->error->failure('Parent not numeric.'); }
-    if ($parent < 0) { return $modx->error->failure('Parent needs to be greater than zero.'); }
+    if (!is_numeric($parent)) { return $modx->error->failure($modx->lexicon('modimport.err.parentnotnumeric'));  }
+    if ($parent < 0) { return $modx->error->failure($modx->lexicon('modimport.err.parentlessthanzero')); }
     
     $csv = $_POST['csv'];
-    if (strlen($csv) < 10) { return $modx->error->failure('Invalid CSV post-value.'); }
+    if (strlen($csv) < 10) { return $modx->error->failure($modx->lexicon('modimport.err.invalidcsv')); }
     
     $lines = explode("\n",$csv);
-    if (count($lines) <= 1) { return $modx->error->failure('Not enough information available. Needs two lines at least!'); }
+    if (count($lines) <= 1) { return $modx->error->failure($modx->lexicon('modimport.err.notenoughdata')); }
     
     $firstline = explode($sep,$lines[0]);
     $firstlinecount = count($firstline);
@@ -46,7 +46,7 @@
         $curline = explode($sep,$lineval);
         if ($firstlinecount != count($curline)) {
             // Make this return to the log, instead of halting all processes
-            return $modx->error->failure('Element mismatch. Perhaps you have used your seperator in the CSV on line '.$line.'?'.$firstlinecount.' - '.count($curline));
+            return $modx->error->failure($modx->lexicon('modimport.err.elementmismatch',array('line' => $line)));
         }
         $lines[$line] = array_combine($firstline,$curline);
     }
@@ -57,12 +57,12 @@
         if (!is_numeric($line['parent'])) { $nr->set('parent',$parent); }
         
         if ($nr->save()) { /*return $modx->error->success('It seemed to work..');*/ }
-        else { return $modx->error->failure('Saving failed.'); }
+        else { return $modx->error->failure($modx->lexicon('modimport.err.savefailed')); }
     }
     
     
     
-    return $modx->error->success(print_r($lines,true));
+    return $modx->error->success("\n\nFor debugging in alpha.. \n\n".print_r($lines,true));
     
     
     

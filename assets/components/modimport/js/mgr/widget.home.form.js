@@ -27,20 +27,18 @@ modImport.page.createImport = function(config) {
         formpanel: 'modimport-form-create-import'
         ,buttons: [{
             process: 'import',
-            text: 'Start import', 
+            text: _('modimport.startbutton'), 
             handler: function() {
                 Ext.getCmp('modimport-panel-import').form.submit({
                     success: function(f, a) {
-                        alert('It worked! '+a.result.message);
+                        alert(_('modimport.importsuccess')+' '+a.result.message);
                     },
                     failure: function(f, a) {
-                        alert('Oops.. '+a.result.message);
+                        alert(_('modimport.importfailure')+' '+a.result.message);
                     }
                 });
             }
-        }/*,{
-            process: 'cancel', text: _('cancel'), params: {a:MODx.action['welcome']}
-        }*/]
+        }]
         ,components: [{
             xtype: 'modimport-form-create-import'
         }]
@@ -74,7 +72,7 @@ modImport.panel.createImport = function(config) {
                 ,border: false
             },{
                 xtype: 'textfield'
-                ,fieldLabel: 'Import parent'
+                ,fieldLabel: _('modimport.parent') //'Import parent'
                 ,name: 'parent'
                 ,id: 'modimport-import-parent'
                 ,labelSeparator: ''
@@ -82,7 +80,7 @@ modImport.panel.createImport = function(config) {
                 ,value: 0
             },{
                 xtype: 'textarea'
-                ,fieldLabel: 'CSV Values'
+                ,fieldLabel: _('modimport.csv') //'CSV Values'
                 ,name: 'csv'
                 ,id: 'modimport-import-csv'
                 ,labelSeparator: ''

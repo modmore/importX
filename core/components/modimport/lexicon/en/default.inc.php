@@ -33,5 +33,17 @@ $_lang['modimport'] = 'modImport';
 $_lang['modimport.description'] = 'Import your CSV formatted data into new Resources';
 $_lang['modimport.desc'] = 'This component can be used to import CSV formatted files into new MODX Resources. Simply choose a parent to use and enter your CSV formatted information.';
 $_lang['modimport.form.basic'] = 'Basic import';
+$_lang['modimport.startbutton'] = 'Start import';
+$_lang['modimport.importsuccess'] = 'Succesfully imported resources into MODX.';
+$_lang['modimport.importfailure'] = 'Oops, an error occured while importing your resources.';
+$_lang['modimport.parent'] = 'Import to parent';
+$_lang['modimport.csv'] = 'CSV values';
+$_lang['modimport.err.parentnotnumeric'] = 'Parent not numeric.';
+$_lang['modimport.err.parentlessthanzero'] = 'Parent needs to be a positive integer.';
+$_lang['modimport.err.invalidcsv'] = 'Invalid CSV value posted.';
+$_lang['modimport.err.notenoughdata'] = 'Not enough data given. Expecting at least one header row, and one data row.';
+$_lang['modimport.err.elementmismatch'] = 'Element count do not match. Please check for correct syntax on line [[+line]].';
+$_lang['modimport.err.savefailed'] = 'An unexpected error occured saving the resource.';
+
 
 ?>
