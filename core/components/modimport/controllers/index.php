@@ -1,0 +1,34 @@
+<?php
+/*
+ * modImport
+ *
+ * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
+ * Development funded by Working Party, a Sydney based digital agency.
+ *
+ * All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ * Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ */
+require_once dirname(dirname(__FILE__)).'/model/modimport/modimport.class.php';
+$modimport = new modImport($modx);
+$modimport->initialize('mgr');
+include 'header.php';
+//$modx->regClientStartupScript($modImport->config['jsUrl'].'mgr/widgets/doodles.grid.js');
+$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/widget.home.panel.js');
+$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/widget.home.form.js');
+$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/section.index.js');
+ 
+return '<div id="modimport-panel-home-div"></div>';
