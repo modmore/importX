@@ -22,6 +22,7 @@
  *
  */
 Ext.onReady(function() {
+    Ext.QuickTips.init();
     MODx.load({ xtype: 'modimport-page-home'});
 });
  

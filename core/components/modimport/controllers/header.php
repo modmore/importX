@@ -23,6 +23,7 @@
  *
  */
 $modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/modimport.js');
+//$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/fileupload.xtype.js');
 $modx->regClientStartupHTMLBlock('<script type="text/javascript">
 Ext.onReady(function() {
     modImport.config = '.$modx->toJSON($modimport->config).';

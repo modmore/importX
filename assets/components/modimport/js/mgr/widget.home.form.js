@@ -54,6 +54,7 @@ modImport.panel.createImport = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         url: modImport.config.connectorUrl
+        ,fileUpload: true
         ,baseParams: {
             action: 'startimport'
         }
@@ -78,6 +79,8 @@ modImport.panel.createImport = function(config) {
                 ,labelSeparator: ''
                 ,anchor: '100%'
                 ,value: 0
+                ,allowBlank: false
+                ,blankText: _('modimport.noparent')
             },{
                 xtype: 'textarea'
                 ,fieldLabel: _('modimport.csv') //'CSV Values'
@@ -85,7 +88,21 @@ modImport.panel.createImport = function(config) {
                 ,id: 'modimport-import-csv'
                 ,labelSeparator: ''
                 ,anchor: '100%'
-            }]
+                ,allowBlank: false
+                ,blankText: _('modimport.nocsv')
+            }/*,{
+                xtype: 'fileuploadfield',
+                buttonOnly: true
+                id: 'form-file',
+                emptyText: 'Select an image',
+                fieldLabel: 'Or, choose a file.',
+                name: 'csvfile',
+                buttonText: 'Browse',
+                buttonCfg: {
+                    iconCls: 'upload-icon'
+                },
+                buttonOnly: true
+            }*/]
         }]
     });
     Ext.Ajax.timeout = 0;
