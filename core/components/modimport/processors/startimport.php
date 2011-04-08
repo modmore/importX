@@ -49,17 +49,18 @@
     $he = array();
     $fields = array('id', 'type', 'contentType', 'pagetitle', 'longtitle', 'description', 'alias', 'link_attributes', 'published', 'pub_date', 'unpub_date', 'parent', 'isfolder', 'introtext', 'content', 'richtext', 'template', 'menuindex', 'searchable', 'cacheable', 'createdby', 'createdon', 'editedby', 'editedon', 'deleted', 'deletedon', 'deletedby', 'publishedon', 'publishedby', 'menutitle', 'donthit', 'haskeywords', 'hasmetatags', 'privateweb', 'privatemgr', 'content_dispo', 'hidemenu', 'class_key', 'context_key', 'content_type');
     foreach ($headings as $h) {
-        if (!in_array(trim($h),$fields)) {
-            if (substr(trim($h),0,2) != 'tv') {
-                $he[] = trim($h);
+        $h = trim($h);
+        if (!in_array($h,$fields)) {
+            if (substr($h,0,2) != 'tv') {
+                $he[] = $h;
             }
             else {
-                if (intval(substr(trim($h),2)) <= 0) {
-                    $he[] = trim($h).' ("'.substr(trim($h),2).'" is expected to be an integer)';
+                if (intval(substr($h,2)) <= 0) {
+                    $he[] = $h.' ("'.substr($h,2).'" is expected to be an integer)';
                 } else {
-                    $tvo = $modx->getObject('modTemplateVar',substr(trim($h),2));
+                    $tvo = $modx->getObject('modTemplateVar',substr($h,2));
                     if (!$tvo) {
-                        $he[] = trim($h).' (no TV with an ID of '.substr(trim($h),2).')';
+                        $he[] = $h.' (no TV with an ID of '.substr($h,2).')';
                     }
                 }
             }
