@@ -22,16 +22,10 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
-/* Translators note:
- * This addon is not yet finished and will be getting a lot more lexicons. While I appreciate
- * your eagerness to help out and translate this into your native tongue, be aware it's not
- * yet nearing a lexicon freeze..
- ***/
- 
+
 $_lang['modimport'] = 'modImport';
 $_lang['modimport.description'] = 'Import your CSV formatted data into new Resources';
-$_lang['modimport.desc'] = 'This component can be used to import CSV formatted files into new MODX Resources. Simply choose a parent to use and enter your CSV formatted information.';
+$_lang['modimport.desc'] = 'This component can be used to import CSV formatted files into new MODX Resources. Simply choose a parent to use and enter your CSV formatted information. The default seperator is: ;';
 $_lang['modimport.form.basic'] = 'Basic import';
 $_lang['modimport.startbutton'] = 'Start import';
 $_lang['modimport.importsuccess'] = 'Succesfully imported resources into MODX.';
