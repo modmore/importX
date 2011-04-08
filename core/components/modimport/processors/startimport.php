@@ -38,17 +38,35 @@
     $lines = explode("\n",$csv);
     if (count($lines) <= 1) { return $modx->error->failure($modx->lexicon('modimport.err.notenoughdata')); }
     
-    $firstline = explode($sep,$lines[0]);
-    $firstlinecount = count($firstline);
-    unset($lines[0]);
+    $headingline = trim($lines[0]);
+    if (substr($headingline,-1) == ";") { 
+        $headingline = substr($headingline,0,-1);
+    }
+    $headings = explode($sep,$headingline);
+    $headingcount = count($headings);
     
+    // Validate the headers...
+    $he = array();
+    $fields = array('id', 'type', 'contentType', 'pagetitle', 'longtitle', 'description', 'alias', 'link_attributes', 'published', 'pub_date', 'unpub_date', 'parent', 'isfolder', 'introtext', 'content', 'richtext', 'template', 'menuindex', 'searchable', 'cacheable', 'createdby', 'createdon', 'editedby', 'editedon', 'deleted', 'deletedon', 'deletedby', 'publishedon', 'publishedby', 'menutitle', 'donthit', 'haskeywords', 'hasmetatags', 'privateweb', 'privatemgr', 'content_dispo', 'hidemenu', 'class_key', 'context_key', 'content_type');
+    foreach ($headings as $h) {
+        if (!in_array(trim($h),$fields)) {
+            $he[] = $h;
+        }
+    }
+    
+    if (count($he) > 0) { 
+        $he = implode(', ',$he);
+        return $modx->error->failure($modx->lexicon('modimport.err.invalidheader',array('fields' => $he)));
+    }
+    
+    unset($lines[0]);
     foreach ($lines as $line => $lineval) {
         $curline = explode($sep,$lineval);
-        if ($firstlinecount != count($curline)) {
+        if ($headingcount != count($curline)) {
             // Make this return to the log, instead of halting all processes
             return $modx->error->failure($modx->lexicon('modimport.err.elementmismatch',array('line' => $line)));
         }
-        $lines[$line] = array_combine($firstline,$curline);
+        $lines[$line] = array_combine($headings,$curline);
     }
     
     foreach ($lines as $line) {

@@ -40,5 +40,5 @@ $_lang['modimport.err.invalidcsv'] = 'Invalid CSV value posted.';
 $_lang['modimport.err.notenoughdata'] = 'Not enough data given. Expecting at least one header row, and one data row.';
 $_lang['modimport.err.elementmismatch'] = 'Element count do not match. Please check for correct syntax on line [[+line]].';
 $_lang['modimport.err.savefailed'] = 'An unexpected error occured saving the resource.';
-
+$_lang['modimport.err.invalidheader'] = 'Your header has one or more invalid fieldnames. The invalid fieldname(s) is (are): [[+fields]].';
 ?>
