@@ -82,12 +82,16 @@
     }
     
     foreach ($lines as $line) {
-        $nr = $modx->newObject('modResource');
-        $nr->fromArray($line);
-        if (!is_numeric($line['parent'])) { $nr->set('parent',$parent); }
-        
-        if ($nr->save()) { /*return $modx->error->success('It seemed to work..');*/ }
-        else { return $modx->error->failure($modx->lexicon('modimport.err.savefailed')); }
+        $response = $modx->runProcessor('resource/create',$line);
+        if ($response->isError()) {
+            if ($response->hasFieldErrors()) {
+                $fieldErrors = $response->getAllErrors();
+                $errorMessage = implode("\n",$fieldErrors);
+            } else {
+                $errorMessage = $modx->lexicon('modimport.err.savefailed')."\n".$response->getMessage();
+            }
+            return $modx->error->failure($errorMessage);
+        }
     }
     
     
