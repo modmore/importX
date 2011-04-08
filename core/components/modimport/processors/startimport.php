@@ -24,6 +24,7 @@
  */
     
     $modimport = &$modx->modimport;
+    $modx->lexicon->load('modimport:default');
     
     $sep = $modimport->config['seperator'];
     if ($sep == '') { $sep = ';'; }
