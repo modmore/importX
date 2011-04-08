@@ -25,13 +25,16 @@
 
 $_lang['modimport'] = 'modImport';
 $_lang['modimport.description'] = 'Import your CSV formatted data into new Resources';
-$_lang['modimport.desc'] = 'This component can be used to import CSV formatted files into new MODX Resources. Simply choose a parent to use and enter your CSV formatted information. The default seperator is: ;';
+$_lang['modimport.desc'] = 'This component can be used to import CSV formatted files into new MODX Resources. Simply choose a parent to use and enter your CSV formatted information. The default seperator is a semi-colon.';
 $_lang['modimport.form.basic'] = 'Basic import';
 $_lang['modimport.startbutton'] = 'Start import';
 $_lang['modimport.importsuccess'] = 'Succesfully imported resources into MODX.';
 $_lang['modimport.importfailure'] = 'Oops, an error occured while importing your resources.';
-$_lang['modimport.parent'] = 'Import to parent';
-$_lang['modimport.csv'] = 'CSV values';
+$_lang['modimport.tab.input'] = 'CSV Input';
+$_lang['modimport.tab.input.desc'] = 'Paste your raw text, seperating records with a newline and fields with a semi-colon (;), in the field below.';
+$_lang['modimport.csv'] = 'Raw CSV';
+$_lang['modimport.tab.settings'] = 'Default Settings';
+$_lang['modimport.tab.settings.desc'] = 'Specify the default settings to be used. You may override these per record by referencing the fieldname in your CSV formatted values.';
 $_lang['modimport.err.noparent'] = 'Please choose a Parent to import to. Specify 0 to put new resources in the root of the site.';
 $_lang['modimport.err.parentnotnumeric'] = 'Parent not numeric.';
 $_lang['modimport.err.parentlessthanzero'] = 'Parent needs to be a positive integer.';

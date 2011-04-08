@@ -58,39 +58,85 @@ modImport.panel.createImport = function(config) {
         ,baseParams: {
             action: 'startimport'
         }
+        ,layout: 'fit'
         ,id: 'modimport-panel-import'
         ,buttonAlign: 'center'
         ,items: [{
-            layout: 'form'
-            ,bodyStyle: 'padding: 15px;'
+            //layout: 'form'
+            bodyStyle: 'padding: 15px;'
             ,border: true
             ,labelWidth: 150
             ,width: '100%'
             ,autoHeight: true
             ,buttonAlign: 'center'
             ,items: [{
-                html: '<p>'+_('modimport.desc')+'</p>'
-                ,border: false
+                html: '<p>'+_('modimport.desc')+'</p>',
+                border: false,
+                height: 25
             },{
-                xtype: 'textfield'
-                ,fieldLabel: _('modimport.parent') //'Import parent'
-                ,name: 'parent'
-                ,id: 'modimport-import-parent'
-                ,labelSeparator: ''
-                ,anchor: '100%'
-                ,value: 0
-                ,allowBlank: false
-                ,blankText: _('modimport.noparent')
-            },{
-                xtype: 'textarea'
-                ,fieldLabel: _('modimport.csv') //'CSV Values'
-                ,name: 'csv'
-                ,id: 'modimport-import-csv'
-                ,labelSeparator: ''
-                ,anchor: '100%'
-                ,allowBlank: false
-                ,blankText: _('modimport.nocsv')
-            }/*,{
+                xtype: 'modx-tabs',
+                deferredRender:false,
+                defaults: {
+                    layout:'form'
+                    ,labelWidth:150
+                    ,bodyStyle:'padding:15px'
+                    ,autoHeight: true
+                    ,hideMode:'offsets'
+                },
+                items: [{
+                    xtype: 'modx-panel',
+                    title: _('modimport.tab.input'),
+                    items: [{
+                        html: '<p>'+_('modimport.tab.input.desc')+'</p>'
+                        ,border: false
+                    },{
+                        xtype: 'textarea'
+                        ,fieldLabel: _('modimport.csv') 
+                        ,name: 'csv'
+                        ,id: 'modimport-import-csv'
+                        ,labelSeparator: ''
+                        ,anchor: '100%'
+                        ,height: 150
+                        ,allowBlank: false
+                        ,blankText: _('modimport.nocsv')
+                    }]
+                },{
+                    title: _('modimport.tab.settings'),
+                    items: [{
+                        html: '<p>'+_('modimport.tab.settings.desc')+'</p>'
+                        ,border: false
+                    },{
+                        xtype: 'textfield'
+                        ,fieldLabel: _('resource_parent') 
+                        ,name: 'parent'
+                        ,id: 'modimport-import-parent'
+                        ,labelSeparator: ''
+                        ,anchor: '100%'
+                        ,value: 0
+                        ,allowBlank: false
+                        ,blankText: _('modimport.noparent')
+                    },{
+                        xtype: 'checkbox',
+                        fieldLabel: _('resource_published'),
+                        name: 'published',
+                        id: 'modimport-import-published',
+                        anchor: '100%'
+                    },{
+                        xtype: 'checkbox',
+                        fieldLabel: _('resource_searchable'),
+                        name: 'searchable',
+                        id: 'modimport-import-searchable',
+                        anchor: '100%'
+                    },{
+                        xtype: 'checkbox',
+                        fieldLabel: _('resource_hide_from_menus'),
+                        name: 'hidemenu',
+                        id: 'modimport-import-hidemenu',
+                        anchor: '100%'
+                    }]
+                }]
+            }
+            /*,{
                 xtype: 'fileuploadfield',
                 buttonOnly: true
                 id: 'form-file',

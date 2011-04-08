@@ -30,7 +30,7 @@ $corePath = $modx->getOption('modimport.core_path',null,$modx->getOption('core_p
 require_once $corePath.'model/modimport/modimport.class.php';
 $modx->modimport = new modImport($modx);
  
-$modx->lexicon->load('modimport:default');
+$modx->lexicon->load('modimport:default,resource');
  
 /* handle request */
 $path = $modx->getOption('processorsPath',$modx->modimport->config,$corePath.'processors/');
