@@ -1,0 +1,20 @@
+modImport
+
+modImport is a utility addon designed to allow users
+to import comma seperated values (CSV) into the MODX
+system as new resources.
+
+It expects a heading line, which is the first line of
+the CSV values and consists of MODX resource field
+names, or TV IDs. An example of a valid heading line
+could be:
+
+    pagetitle;menutitle;alias;tv2;content
+
+It will use the heading throughout the rest of the CSV
+values to make sure the references are correct. If it
+is not, it will throw an error.
+
+TVs need to be specified by the prefix "tv" and the ID
+of the TV it needs to be added to, like "tv2" in the
+example heading above.
