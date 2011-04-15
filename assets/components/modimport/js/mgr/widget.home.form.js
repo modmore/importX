@@ -21,6 +21,8 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
+var topic = '/modimport/';
+var register = 'mgr';
 modImport.page.createImport = function(config) {
     config = config || {};
     Ext.applyIf(config,{
@@ -29,12 +31,25 @@ modImport.page.createImport = function(config) {
             process: 'import',
             text: _('modimport.startbutton'), 
             handler: function() {
+                var console = MODx.load({
+                   xtype: 'modx-console'
+                   ,register: register
+                   ,topic: topic
+                   ,show_filename: 0
+                   ,listeners: {
+                     'shutdown': {fn:function() {
+                         /* do code here when you close the console */
+                     },scope:this}
+                   }
+                });
+                console.show(Ext.getBody());
                 Ext.getCmp('modimport-panel-import').form.submit({
-                    success: function(f, a) {
-                        alert(_('modimport.importsuccess')+' '+a.result.message);
-                    },
+                    success:{fn:function() {
+                        //console.fireEvent('complete');
+                    },scope:this},
                     failure: function(f, a) {
-                        alert(_('modimport.importfailure')+' '+a.result.message);
+                        //alert(_('modimport.importfailure')+' '+a.result.message);
+                        //console.fireEvent('complete');
                     }
                 });
             }
@@ -56,7 +71,9 @@ modImport.panel.createImport = function(config) {
         url: modImport.config.connectorUrl
         ,fileUpload: true
         ,baseParams: {
-            action: 'startimport'
+            action: 'startimport',
+            register: register,
+            topic: topic
         }
         ,layout: 'fit'
         ,id: 'modimport-panel-import'
@@ -72,10 +89,10 @@ modImport.panel.createImport = function(config) {
             ,items: [{
                 html: '<p>'+_('modimport.desc')+'</p>',
                 border: false,
-                height: 25
             },{
                 xtype: 'modx-tabs',
                 deferredRender:false,
+                forceLayout: true,
                 defaults: {
                     layout:'form'
                     ,labelWidth:150
