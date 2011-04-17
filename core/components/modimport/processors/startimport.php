@@ -33,12 +33,12 @@
                 sleep(2);
                 $modx->log(modX::LOG_LEVEL_INFO,'COMPLETED');
                 sleep(1);
-                die($modx->error->failure($msg)); // Die to prevent the process to go on anyway!
+                exit($modx->error->failure($msg)); // Die to prevent the process to go on anyway!
             break;
             default:
             case 'info':
                 $modx->log(modX::LOG_LEVEL_INFO,$msg);
-                return true;
+                //return true;
             break;
             case 'warn':
                 $modx->log(modX::LOG_LEVEL_WARN,$msg);
@@ -56,7 +56,7 @@ sleep(1);
     $sep = $modimport->config['seperator'];
     if ($sep == '') { $sep = ';'; }
 
-    $parent = ($_POST['parent'])? $_POST['parent'] : 0;
+    $parent = (isset($_POST['parent']))? $_POST['parent'] : 0;
     if (!is_numeric($parent)) {
         return logConsole('error',$modx->lexicon('modimport.err.parentnotnumeric'));
     }
@@ -64,11 +64,15 @@ sleep(1);
         return logConsole('error',$modx->lexicon('modimport.err.parentlessthanzero'));
     }
 
-    $csv = trim($_POST['csv']);
+    $csv = (isset($_POST['csv'])) ? trim($_POST['csv']) : false;
     if (strlen($csv) < 10) {
         return logConsole('error',$modx->lexicon('modimport.err.invalidcsv'),true);
     }
-    
+
+    $published = (isset($_POST['published'])) ? $_POST['published'] : -1;
+    if ($published == 'on') { $published = 1; }
+    else { $published = 0; }
+
     $lines = explode("\n",$csv);
     if (count($lines) <= 1) {
         return logConsole('error',$modx->lexicon('modimport.err.notenoughdata'),true);
@@ -120,17 +124,20 @@ sleep(1);
             $err[]  = $line;
         } else {
             $lines[$line] = array_combine($headings,$curline);
-            if ((!$lines[$line]['parent']) && ($parent)) { $lines[$line]['parent'] = $parent; }
+            if ((!isset($lines[$line]['parent'])) && (isset($parent))) { $lines[$line]['parent'] = $parent; }
+            if ((!isset($lines[$line]['published'])) && (isset($published))) { $lines[$line]['published'] = $published; }
         }
     }
 
     if (count($err) > 0) {
-        return logConsole('error',$modx->lexicon('modimport.err.elementmismatch',array('line' => implode(', ',$err))));
+        logConsole('error',$modx->lexicon('modimport.err.elementmismatch',array('line' => implode(', ',$err))));
     }
     logConsole('info','No errors found while checking the import values. Importing...');
     foreach ($lines as $line) {
-        logConsole('info','Looping..'.rand(1,9999));
-        $response = @$modx->runProcessor('resource/create',$line);
+        //logConsole('info','Processing: '.print_r($line,true));
+        logConsole('info','before processor');
+        $response = $modx->runProcessor('resource/create',$line);
+        logConsole('info','this doesnt show up');
         if ($response->isError()) {
             if ($response->hasFieldErrors()) {
                 $fieldErrors = $response->getAllErrors();
@@ -138,14 +145,14 @@ sleep(1);
             } else {
                 $errorMessage = $modx->lexicon('modimport.err.savefailed')."\n".$response->getMessage();
             }
-            return logConsole('error',$modx->error->failure($errorMessage));
+            return logConsole('error','Oopsie. '.$modx->error->failure($errorMessage));
         } else {
-            logConsole('info','Added resource. '.print_r($line,true));
+            //logConsole('info','Added resource. '.print_r($line,true));
             //$modx->log(modX::LOG_LEVEL_INFO,"Added a resource with these details: ".print_r($line,true));
         }
     }
     sleep(2);
-    $modx->log(modX::LOG_LEVEL_INFO,"COMPLETED");
+    logConsole('info','COMPLETED');
     sleep(1);
     return $modx->error->success("Done.");
     //return $modx->error->success("\n\nFor debugging in alpha.. \n\n".print_r($lines,true));

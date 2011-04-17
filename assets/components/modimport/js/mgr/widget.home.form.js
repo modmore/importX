@@ -45,7 +45,7 @@ modImport.page.createImport = function(config) {
                 console.show(Ext.getBody());
                 Ext.getCmp('modimport-panel-import').form.submit({
                     success:{fn:function() {
-                        //console.fireEvent('complete');
+                        console.fireEvent('complete');
                     },scope:this},
                     failure: function(f, a) {
                         //alert(_('modimport.importfailure')+' '+a.result.message);
