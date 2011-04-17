@@ -33,7 +33,7 @@
                 sleep(2);
                 $modx->log(modX::LOG_LEVEL_INFO,'COMPLETED');
                 sleep(1);
-                return $modx->error->failure($msg);
+                die($modx->error->failure($msg)); // Die to prevent the process to go on anyway!
             break;
             default:
             case 'info':
