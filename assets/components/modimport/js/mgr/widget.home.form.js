@@ -88,7 +88,7 @@ modImport.panel.createImport = function(config) {
             ,buttonAlign: 'center'
             ,items: [{
                 html: '<p>'+_('modimport.desc')+'</p>',
-                border: false,
+                border: false
             },{
                 xtype: 'modx-tabs',
                 deferredRender:false,
