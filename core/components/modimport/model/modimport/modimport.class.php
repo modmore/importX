@@ -41,7 +41,7 @@ class modImport {
             'assetsUrl' => $assetsUrl,
             'connectorUrl' => $assetsUrl.'connector.php',
             
-            'seperator' => ';'
+            'separator' => ';'
         ),$config);
     }
     

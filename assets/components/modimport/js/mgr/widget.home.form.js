@@ -116,6 +116,16 @@ modImport.panel.createImport = function(config) {
                         ,height: 150
                         ,allowBlank: false
                         ,blankText: _('modimport.nocsv')
+                    },{
+                        html: '<p>'+_('modimport.tab.input.sep')+'</p>',
+                        border: false
+                    },{
+                        xtype: 'textfield',
+                        fieldLabel: _('modimport.separator'),
+                        name:  'separator',
+                        id: 'modimport-import-sep',
+                        anchor: '100%',
+                        allowBlank: true
                     }]
                 },{
                     title: _('modimport.tab.settings'),

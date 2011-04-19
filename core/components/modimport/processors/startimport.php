@@ -53,7 +53,7 @@ sleep(1);
     $modimport = &$modx->modimport;
     $modx->lexicon->load('modimport:default');
 
-    $sep = $modimport->config['seperator'];
+    $sep = (isset($_POST['separator'])) ? $_POST['separator'] : $modimport->config['separator'];
     if ($sep == '') { $sep = ';'; }
 
     $parent = (isset($_POST['parent']))? $_POST['parent'] : 0;
@@ -79,8 +79,8 @@ sleep(1);
     }
     
     $headingline = trim($lines[0]);
-    if (substr($headingline,-1) == ";") { 
-        $headingline = substr($headingline,0,-1);
+    if (substr($headingline,-strlen($sep)) == $sep) {
+        $headingline = substr($headingline,0,-strlen($sep));
     }
     $headings = explode($sep,$headingline);
     $headingcount = count($headings);
@@ -137,7 +137,7 @@ sleep(1);
         //logConsole('info','Processing: '.print_r($line,true));
         logConsole('info','before processor');
         $response = $modx->runProcessor('resource/create',$line);
-        logConsole('info','this doesnt show up');
+        $modx->log(modX::LOG_LEVEL_INFO,'after processr');
         if ($response->isError()) {
             if ($response->hasFieldErrors()) {
                 $fieldErrors = $response->getAllErrors();
@@ -151,7 +151,7 @@ sleep(1);
             //$modx->log(modX::LOG_LEVEL_INFO,"Added a resource with these details: ".print_r($line,true));
         }
     }
-    sleep(2);
+    sleep(3);
     logConsole('info','COMPLETED');
     sleep(1);
     return $modx->error->success("Done.");
