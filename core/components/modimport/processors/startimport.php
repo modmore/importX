@@ -69,9 +69,13 @@ sleep(1);
         return logConsole('error',$modx->lexicon('modimport.err.invalidcsv'),true);
     }
 
-    $published = (isset($_POST['published'])) ? $_POST['published'] : -1;
-    if ($published == 'on') { $published = 1; }
-    else { $published = 0; }
+// Check default settings
+if (isset($_POST['published'])) { $published = ($_POST['published'] == 'on') ? 1 : 0; }
+else { $published = 0; }
+if (isset($_POST['searchable'])) { $searchable = ($_POST['searchable'] == 'on') ? 1 : 0; }
+else { $searchable = 0; }
+if (isset($_POST['hidemenu'])) { $hidemenu = ($_POST['hidemenu'] == 'on') ? 1 : 0; }
+else { $hidemenu = 0; }
 
     $lines = explode("\n",$csv);
     if (count($lines) <= 1) {
@@ -111,7 +115,6 @@ sleep(1);
         $he = implode(', ',$he);
         return logConsole('error',$modx->lexicon('modimport.err.invalidheader',array('fields' => $he)),true);
     }
-    //if (!in_array('alias',$headings)) { $headings[] = 'alias'; }
 
     unset($lines[0]);
     logConsole('info','No errors in pre-import found. Preparing import values...');
@@ -126,6 +129,8 @@ sleep(1);
             $lines[$line] = array_combine($headings,$curline);
             if ((!isset($lines[$line]['parent'])) && (isset($parent))) { $lines[$line]['parent'] = $parent; }
             if ((!isset($lines[$line]['published'])) && (isset($published))) { $lines[$line]['published'] = $published; }
+            if ((!isset($lines[$line]['searchable'])) && (isset($searchable))) { $lines[$line]['searchable'] = $searchable; }
+            if ((!isset($lines[$line]['hidemenu'])) && (isset($hidemenu))) { $lines[$line]['hidemenu'] = $hidemenu; }
         }
     }
 
