@@ -1,5 +1,5 @@
 /*
- * modImport
+ * importX
  *
  * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
  * Development funded by Working Party, a Sydney based digital agency.
@@ -21,15 +21,15 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-var topic = '/modimport/';
+var topic = '/importx/';
 var register = 'mgr';
-modImport.page.createImport = function(config) {
+importX.page.createImport = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        formpanel: 'modimport-form-create-import'
+        formpanel: 'importx-form-create-import'
         ,buttons: [{
             process: 'import',
-            text: _('modimport.startbutton'), 
+            text: _('importx.startbutton'), 
             handler: function() {
                 var console = MODx.load({
                    xtype: 'modx-console'
@@ -43,32 +43,32 @@ modImport.page.createImport = function(config) {
                    }
                 });
                 console.show(Ext.getBody());
-                Ext.getCmp('modimport-panel-import').form.submit({
+                Ext.getCmp('importx-panel-import').form.submit({
                     success:{fn:function() {
                         console.fireEvent('complete');
                     },scope:this},
                     failure: function(f, a) {
-                        //alert(_('modimport.importfailure')+' '+a.result.message);
+                        //alert(_('importx.importfailure')+' '+a.result.message);
                         //console.fireEvent('complete');
                     }
                 });
             }
         }]
         ,components: [{
-            xtype: 'modimport-form-create-import'
+            xtype: 'importx-form-create-import'
         }]
     });
-    modImport.page.createImport.superclass.constructor.call(this,config);
+    importX.page.createImport.superclass.constructor.call(this,config);
 };
-Ext.extend(modImport.page.createImport,MODx.Component);
-Ext.reg('modimport-page-import',modImport.page.createImport);
+Ext.extend(importX.page.createImport,MODx.Component);
+Ext.reg('importx-page-import',importX.page.createImport);
 
 
 
-modImport.panel.createImport = function(config) {
+importX.panel.createImport = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        url: modImport.config.connectorUrl
+        url: importX.config.connectorUrl
         ,fileUpload: true
         ,baseParams: {
             action: 'startimport',
@@ -76,7 +76,7 @@ modImport.panel.createImport = function(config) {
             topic: topic
         }
         ,layout: 'fit'
-        ,id: 'modimport-panel-import'
+        ,id: 'importx-panel-import'
         ,buttonAlign: 'center'
         ,items: [{
             //layout: 'form'
@@ -87,7 +87,7 @@ modImport.panel.createImport = function(config) {
             ,autoHeight: true
             ,buttonAlign: 'center'
             ,items: [{
-                html: '<p>'+_('modimport.desc')+'</p>',
+                html: '<p>'+_('importx.desc')+'</p>',
                 border: false
             },{
                 xtype: 'modx-tabs',
@@ -102,63 +102,63 @@ modImport.panel.createImport = function(config) {
                 },
                 items: [{
                     xtype: 'modx-panel',
-                    title: _('modimport.tab.input'),
+                    title: _('importx.tab.input'),
                     items: [{
-                        html: '<p>'+_('modimport.tab.input.desc')+'</p>'
+                        html: '<p>'+_('importx.tab.input.desc')+'</p>'
                         ,border: false
                     },{
                         xtype: 'textarea'
-                        ,fieldLabel: _('modimport.csv') 
+                        ,fieldLabel: _('importx.csv') 
                         ,name: 'csv'
-                        ,id: 'modimport-import-csv'
+                        ,id: 'importx-import-csv'
                         ,labelSeparator: ''
                         ,anchor: '100%'
                         ,height: 150
                         ,allowBlank: false
-                        ,blankText: _('modimport.nocsv')
+                        ,blankText: _('importx.nocsv')
                     },{
-                        html: '<p>'+_('modimport.tab.input.sep')+'</p>',
+                        html: '<p>'+_('importx.tab.input.sep')+'</p>',
                         border: false
                     },{
                         xtype: 'textfield',
-                        fieldLabel: _('modimport.separator'),
+                        fieldLabel: _('importx.separator'),
                         name:  'separator',
-                        id: 'modimport-import-sep',
+                        id: 'importx-import-sep',
                         anchor: '100%',
                         allowBlank: true
                     }]
                 },{
-                    title: _('modimport.tab.settings'),
+                    title: _('importx.tab.settings'),
                     items: [{
-                        html: '<p>'+_('modimport.tab.settings.desc')+'</p>'
+                        html: '<p>'+_('importx.tab.settings.desc')+'</p>'
                         ,border: false
                     },{
                         xtype: 'textfield'
                         ,fieldLabel: _('resource_parent') 
                         ,name: 'parent'
-                        ,id: 'modimport-import-parent'
+                        ,id: 'importx-import-parent'
                         ,labelSeparator: ''
                         ,anchor: '100%'
                         ,value: 0
                         ,allowBlank: false
-                        ,blankText: _('modimport.noparent')
+                        ,blankText: _('importx.noparent')
                     },{
                         xtype: 'checkbox',
                         fieldLabel: _('resource_published'),
                         name: 'published',
-                        id: 'modimport-import-published',
+                        id: 'importx-import-published',
                         anchor: '100%'
                     },{
                         xtype: 'checkbox',
                         fieldLabel: _('resource_searchable'),
                         name: 'searchable',
-                        id: 'modimport-import-searchable',
+                        id: 'importx-import-searchable',
                         anchor: '100%'
                     },{
                         xtype: 'checkbox',
                         fieldLabel: _('resource_hide_from_menus'),
                         name: 'hidemenu',
-                        id: 'modimport-import-hidemenu',
+                        id: 'importx-import-hidemenu',
                         anchor: '100%'
                     }]
                 }]
@@ -179,7 +179,7 @@ modImport.panel.createImport = function(config) {
         }]
     });
     Ext.Ajax.timeout = 0;
-    modImport.panel.createImport.superclass.constructor.call(this,config);
+    importX.panel.createImport.superclass.constructor.call(this,config);
 };
-Ext.extend(modImport.panel.createImport,MODx.FormPanel);
-Ext.reg('modimport-form-create-import',modImport.panel.createImport);
+Ext.extend(importX.panel.createImport,MODx.FormPanel);
+Ext.reg('importx-form-create-import',importX.panel.createImport);

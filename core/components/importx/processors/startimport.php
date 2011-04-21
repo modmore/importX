@@ -1,6 +1,6 @@
 <?php
 /*
- * modImport
+ * importX
  *
  * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
  * Development funded by Working Party, a Sydney based digital agency.
@@ -50,23 +50,23 @@
     $modx->log(modX::LOG_LEVEL_INFO,'Running pre-import tests on submitted data...');
 sleep(1);
 
-    $modimport = &$modx->modimport;
-    $modx->lexicon->load('modimport:default');
+    $importx = &$modx->importx;
+    $modx->lexicon->load('importx:default');
 
-    $sep = (isset($_POST['separator'])) ? $_POST['separator'] : $modimport->config['separator'];
+    $sep = (isset($_POST['separator'])) ? $_POST['separator'] : $importx->config['separator'];
     if ($sep == '') { $sep = ';'; }
 
     $parent = (isset($_POST['parent']))? $_POST['parent'] : 0;
     if (!is_numeric($parent)) {
-        return logConsole('error',$modx->lexicon('modimport.err.parentnotnumeric'));
+        return logConsole('error',$modx->lexicon('importx.err.parentnotnumeric'));
     }
     if ($parent < 0) {
-        return logConsole('error',$modx->lexicon('modimport.err.parentlessthanzero'));
+        return logConsole('error',$modx->lexicon('importx.err.parentlessthanzero'));
     }
 
     $csv = (isset($_POST['csv'])) ? trim($_POST['csv']) : false;
     if (strlen($csv) < 10) {
-        return logConsole('error',$modx->lexicon('modimport.err.invalidcsv'),true);
+        return logConsole('error',$modx->lexicon('importx.err.invalidcsv'),true);
     }
 
 // Check default settings
@@ -79,7 +79,7 @@ else { $hidemenu = 0; }
 
     $lines = explode("\n",$csv);
     if (count($lines) <= 1) {
-        return logConsole('error',$modx->lexicon('modimport.err.notenoughdata'),true);
+        return logConsole('error',$modx->lexicon('importx.err.notenoughdata'),true);
     }
     
     $headingline = trim($lines[0]);
@@ -113,7 +113,7 @@ else { $hidemenu = 0; }
 
     if (count($he) > 0) { 
         $he = implode(', ',$he);
-        return logConsole('error',$modx->lexicon('modimport.err.invalidheader',array('fields' => $he)),true);
+        return logConsole('error',$modx->lexicon('importx.err.invalidheader',array('fields' => $he)),true);
     }
 
     unset($lines[0]);
@@ -135,7 +135,7 @@ else { $hidemenu = 0; }
     }
 
     if (count($err) > 0) {
-        logConsole('error',$modx->lexicon('modimport.err.elementmismatch',array('line' => implode(', ',$err))));
+        logConsole('error',$modx->lexicon('importx.err.elementmismatch',array('line' => implode(', ',$err))));
     }
     logConsole('info','No errors found while checking the import values. Importing...');
     foreach ($lines as $line) {
@@ -148,7 +148,7 @@ else { $hidemenu = 0; }
                 $fieldErrors = $response->getAllErrors();
                 $errorMessage = implode("\n",$fieldErrors);
             } else {
-                $errorMessage = $modx->lexicon('modimport.err.savefailed')."\n".$response->getMessage();
+                $errorMessage = $modx->lexicon('importx.err.savefailed')."\n".$response->getMessage();
             }
             return logConsole('error','Oopsie. '.$modx->error->failure($errorMessage));
         } else {

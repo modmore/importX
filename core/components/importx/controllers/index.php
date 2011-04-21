@@ -1,5 +1,6 @@
+<?php
 /*
- * modImport
+ * importX
  *
  * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
  * Development funded by Working Party, a Sydney based digital agency.
@@ -21,22 +22,13 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-Ext.onReady(function() {
-    Ext.QuickTips.init();
-    MODx.load({ xtype: 'modimport-page-home'});
-});
+require_once dirname(dirname(__FILE__)).'/model/importx/importx.class.php';
+$importx = new importX($modx);
+$importx->initialize('mgr');
+include 'header.php';
+//$modx->regClientStartupScript($importX->config['jsUrl'].'mgr/widgets/doodles.grid.js');
+$modx->regClientStartupScript($importx->config['jsUrl'].'mgr/widget.home.panel.js');
+$modx->regClientStartupScript($importx->config['jsUrl'].'mgr/widget.home.form.js');
+$modx->regClientStartupScript($importx->config['jsUrl'].'mgr/section.index.js');
  
-modImport.page.Home = function(config) {
-    config = config || {};
-    Ext.applyIf(config,{
-        renderTo: 'modimport-panel-home-div'
-        ,components: [{
-            xtype: 'modimport-panel-tabs'
-        },{
-            xtype: 'modimport-page-import'
-        }]
-    });
-    modImport.page.Home.superclass.constructor.call(this,config);
-};
-Ext.extend(modImport.page.Home,MODx.Component);
-Ext.reg('modimport-page-home',modImport.page.Home);
+return '<div id="importx-panel-home-div"></div>';

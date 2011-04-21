@@ -1,6 +1,6 @@
-modImport
+importX
 
-modImport is a utility addon designed to allow users
+importX is a utility addon designed to allow users
 to import comma seperated values (CSV) into the MODX
 system as new resources.
 

@@ -1,6 +1,5 @@
-<?php
 /*
- * modImport
+ * importX
  *
  * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
  * Development funded by Working Party, a Sydney based digital agency.
@@ -22,11 +21,12 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/modimport.js');
-//$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/fileupload.xtype.js');
-$modx->regClientStartupHTMLBlock('<script type="text/javascript">
-Ext.onReady(function() {
-    modImport.config = '.$modx->toJSON($modimport->config).';
+var importX = function(config) {
+    config = config || {};
+    importX.superclass.constructor.call(this,config);
+};
+Ext.extend(importX,Ext.Component,{
+    page:{},window:{},grid:{},tree:{},panel:{},combo:{},config: {}
 });
-</script>');
-return '';
+Ext.reg('importx',importX);
+importX = new importX();

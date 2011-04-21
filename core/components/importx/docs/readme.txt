@@ -1,4 +1,4 @@
-modImport is a utility tool for MODX Revolution to quickly import your CSV formatted values into resources.
+importX is a utility tool for MODX Revolution to quickly import your CSV formatted values into resources.
 
 The CSV needs to be formatted with ";" as the seperator.
 

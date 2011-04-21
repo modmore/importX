@@ -1,6 +1,6 @@
 <?php 
 /*
- * modImport
+ * importX
  *
  * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
  * Development funded by Working Party, a Sydney based digital agency.
@@ -22,14 +22,14 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-class modImport {
+class importX {
     public $modx;
     public $config = array();
     function __construct(modX &$modx,array $config = array()) {
         $this->modx =& $modx;
  
-        $basePath = $this->modx->getOption('modimport.core_path',$config,$this->modx->getOption('core_path').'components/modimport/');
-        $assetsUrl = $this->modx->getOption('modimport.assets_url',$config,$this->modx->getOption('assets_url').'components/modimport/');
+        $basePath = $this->modx->getOption('importx.core_path',$config,$this->modx->getOption('core_path').'components/importx/');
+        $assetsUrl = $this->modx->getOption('importx.assets_url',$config,$this->modx->getOption('assets_url').'components/importx/');
         $this->config = array_merge(array(
             'basePath' => $basePath,
             'corePath' => $basePath,
@@ -48,7 +48,7 @@ class modImport {
     public function initialize($ctx = 'web') {
         switch ($ctx) {
             case 'mgr':
-                $this->modx->lexicon->load('modimport:default');
+                $this->modx->lexicon->load('importx:default');
 
             break;
         }

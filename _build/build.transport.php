@@ -2,7 +2,7 @@
 /*
  * modImport build script
  *
- * @package modimport
+ * @package importx
  * @subpackage build
  */
 $mtime = microtime();
@@ -12,7 +12,7 @@ $tstart = $mtime;
 set_time_limit(0);
 
 define('PKG_NAME','modImport');
-define('PKG_NAME_LOWER','modimport');
+define('PKG_NAME_LOWER','importx');
 define('PKG_VERSION','0.1');
 define('PKG_RELEASE','alpha1');
 
@@ -47,11 +47,11 @@ $builder->registerNamespace(PKG_NAME_LOWER,false,true,'{core_path}components/'.P
 $action= $modx->newObject('modAction');
 $action->fromArray(array(
     'id' => 1,
-    'namespace' => 'modimport',
+    'namespace' => 'importx',
     'parent' => 0,
     'controller' => 'controller',
     'haslayout' => 1,
-    'lang_topics' => 'modimport:default',
+    'lang_topics' => 'importx:default',
     'assets' => '',
 ),'',true,true);
 
@@ -59,8 +59,8 @@ $action->fromArray(array(
 $menu= $modx->newObject('modMenu');
 $menu->fromArray(array(
     'parent' => 'components',
-    'text' => 'modimport',
-    'description' => 'modimport.description',
+    'text' => 'importx',
+    'description' => 'importx.description',
     'icon' => '',
     'menuindex' => '0',
     'params' => '',

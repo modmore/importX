@@ -1,6 +1,6 @@
 <?php
 /*
- * modImport
+ * importX
  *
  * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
  * Development funded by Working Party, a Sydney based digital agency.
@@ -22,13 +22,11 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-require_once dirname(dirname(__FILE__)).'/model/modimport/modimport.class.php';
-$modimport = new modImport($modx);
-$modimport->initialize('mgr');
-include 'header.php';
-//$modx->regClientStartupScript($modImport->config['jsUrl'].'mgr/widgets/doodles.grid.js');
-$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/widget.home.panel.js');
-$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/widget.home.form.js');
-$modx->regClientStartupScript($modimport->config['jsUrl'].'mgr/section.index.js');
- 
-return '<div id="modimport-panel-home-div"></div>';
+$modx->regClientStartupScript($importx->config['jsUrl'].'mgr/importx.js');
+//$modx->regClientStartupScript($importx->config['jsUrl'].'mgr/fileupload.xtype.js');
+$modx->regClientStartupHTMLBlock('<script type="text/javascript">
+Ext.onReady(function() {
+    importX.config = '.$modx->toJSON($importx->config).';
+});
+</script>');
+return '';

@@ -1,5 +1,5 @@
 /*
- * modImport
+ * importX
  *
  * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
  * Development funded by Working Party, a Sydney based digital agency.
@@ -21,12 +21,22 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-var modImport = function(config) {
-    config = config || {};
-    modImport.superclass.constructor.call(this,config);
-};
-Ext.extend(modImport,Ext.Component,{
-    page:{},window:{},grid:{},tree:{},panel:{},combo:{},config: {}
+Ext.onReady(function() {
+    Ext.QuickTips.init();
+    MODx.load({ xtype: 'importx-page-home'});
 });
-Ext.reg('modimport',modImport);
-modImport = new modImport();
+ 
+importX.page.Home = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        renderTo: 'importx-panel-home-div'
+        ,components: [{
+            xtype: 'importx-panel-tabs'
+        },{
+            xtype: 'importx-page-import'
+        }]
+    });
+    importX.page.Home.superclass.constructor.call(this,config);
+};
+Ext.extend(importX.page.Home,MODx.Component);
+Ext.reg('importx-page-home',importX.page.Home);

@@ -1,5 +1,6 @@
+<?php
 /*
- * modImport
+ * importX
  *
  * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
  * Development funded by Working Party, a Sydney based digital agency.
@@ -21,19 +22,21 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-modImport.panel.Tabs = function(config) {
-    config = config || {};
-    Ext.apply(config,{
-        border: false
-        ,baseCls: 'modx-formpanel'
-        ,items: [{
-            html: '<h2>'+_('modimport')+'</h2>'
-            ,border: false
-            ,cls: 'modx-page-header'
-        }]
-    });
-    modImport.panel.Tabs.superclass.constructor.call(this,config);
-};
-Ext.extend(modImport.panel.Tabs,MODx.Panel);
-Ext.reg('modimport-panel-tabs',modImport.panel.Tabs);
+require_once dirname(dirname(dirname(dirname(__FILE__)))).'/config.core.php';
+require_once MODX_CORE_PATH.'config/'.MODX_CONFIG_KEY.'.inc.php';
+require_once MODX_CONNECTORS_PATH.'index.php';
+ 
+$corePath = $modx->getOption('importx.core_path',null,$modx->getOption('core_path').'components/importx/');
+require_once $corePath.'model/importx/importx.class.php';
+$modx->importx = new importX($modx);
+ 
+$modx->lexicon->load('importx:default,resource');
+ 
+/* handle request */
+$path = $modx->getOption('processorsPath',$modx->importx->config,$corePath.'processors/');
+$modx->request->handleRequest(array(
+    'processors_path' => $path,
+    'location' => '',
+));
 
+?>
