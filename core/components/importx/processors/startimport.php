@@ -22,8 +22,6 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-    //sleep(0);
-//error_reporting(0);
     function logConsole($type,$msg) {
         global $modx;
         switch ($type) {
@@ -33,7 +31,7 @@
                 sleep(2);
                 $modx->log(modX::LOG_LEVEL_INFO,'COMPLETED');
                 sleep(1);
-                exit($modx->error->failure($msg)); // Die to prevent the process to go on anyway!
+                return $modx->error->failure($msg);
             break;
             default:
             case 'info':
@@ -69,13 +67,13 @@ sleep(1);
         return logConsole('error',$modx->lexicon('importx.err.invalidcsv'),true);
     }
 
-// Check default settings
-if (isset($_POST['published'])) { $published = ($_POST['published'] == 'on') ? 1 : 0; }
-else { $published = 0; }
-if (isset($_POST['searchable'])) { $searchable = ($_POST['searchable'] == 'on') ? 1 : 0; }
-else { $searchable = 0; }
-if (isset($_POST['hidemenu'])) { $hidemenu = ($_POST['hidemenu'] == 'on') ? 1 : 0; }
-else { $hidemenu = 0; }
+    // Check default settings
+    if (isset($_POST['published'])) { $published = ($_POST['published'] == 'on') ? 1 : 0; }
+    else { $published = 0; }
+    if (isset($_POST['searchable'])) { $searchable = ($_POST['searchable'] == 'on') ? 1 : 0; }
+    else { $searchable = 0; }
+    if (isset($_POST['hidemenu'])) { $hidemenu = ($_POST['hidemenu'] == 'on') ? 1 : 0; }
+    else { $hidemenu = 0; }
 
     $lines = explode("\n",$csv);
     if (count($lines) <= 1) {
@@ -135,33 +133,28 @@ else { $hidemenu = 0; }
     }
 
     if (count($err) > 0) {
-        logConsole('error',$modx->lexicon('importx.err.elementmismatch',array('line' => implode(', ',$err))));
+        return logConsole('error',$modx->lexicon('importx.err.elementmismatch',array('line' => implode(', ',$err))));
     }
-    logConsole('info','No errors found while checking the import values. Importing...');
+    logConsole('info','No errors found while checking the import values. Running import...');
+    $resourceCount = 0;
     foreach ($lines as $line) {
-        //logConsole('info','Processing: '.print_r($line,true));
-        logConsole('info','before processor');
         $response = $modx->runProcessor('resource/create',$line);
-        $modx->log(modX::LOG_LEVEL_INFO,'after processr');
         if ($response->isError()) {
             if ($response->hasFieldErrors()) {
                 $fieldErrors = $response->getAllErrors();
                 $errorMessage = implode("\n",$fieldErrors);
             } else {
-                $errorMessage = $modx->lexicon('importx.err.savefailed')."\n".$response->getMessage();
+                $errorMessage = $modx->lexicon('importx.err.savefailed')."\n".print_r($response->getMessage(),true);
             }
-            return logConsole('error','Oopsie. '.$modx->error->failure($errorMessage));
+            return logConsole('error',$modx->error->failure($errorMessage));
         } else {
-            //logConsole('info','Added resource. '.print_r($line,true));
-            //$modx->log(modX::LOG_LEVEL_INFO,"Added a resource with these details: ".print_r($line,true));
+            $resourceCount++;
         }
     }
-    sleep(3);
+    sleep(1);
+    logConsole('info','Importing completed. '.$resourceCount.' resources have been imported.');
+    sleep(1);
     logConsole('info','COMPLETED');
     sleep(1);
     return $modx->error->success("Done.");
-    //return $modx->error->success("\n\nFor debugging in alpha.. \n\n".print_r($lines,true));
-
-    //return $modx->error->failure('Unknown error.');
-    
 ?>
