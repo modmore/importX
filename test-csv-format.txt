@@ -1,9 +1,5 @@
 pagetitle;alias;isfolder
-Analyseren;analyseren;1
-Communiceren;communiceren;1
-Motiveren;motiveren;1
-Onderzoeken;onderzoeken;1
-Plannen;plannen;1
-Projectmatig werken;projecten;1
-Reflecteren;reflecteren;1
-Van mbo naar hbo;mbohbo;1
+Analysing;analysing;1
+Communicating;communicating;0
+Rock solid copy;sepiariverstudios;0
+Thank you Working Party!!;working-party-rocks;1
