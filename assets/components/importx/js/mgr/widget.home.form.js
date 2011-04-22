@@ -69,7 +69,6 @@ importX.panel.createImport = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         url: importX.config.connectorUrl
-        ,fileUpload: true
         ,baseParams: {
             action: 'startimport',
             register: register,
