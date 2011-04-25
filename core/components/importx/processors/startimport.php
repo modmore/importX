@@ -45,8 +45,9 @@
         }
     }
 //sleep(1);
+    $modx->request->registerLogging($_POST);
     $modx->log(modX::LOG_LEVEL_INFO,'Running pre-import tests on submitted data...');
-sleep(1);
+    sleep(1);
 
     $importx = &$modx->importx;
     $modx->lexicon->load('importx:default');
@@ -153,7 +154,7 @@ sleep(1);
     }
     sleep(1);
     logConsole('info','Importing completed. '.$resourceCount.' resources have been imported.');
-    sleep(1);
+    sleep(1); 
     logConsole('info','COMPLETED');
     sleep(1);
     return $modx->error->success("Done.");
