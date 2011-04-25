@@ -44,13 +44,13 @@
             break;
         }
     }
-//sleep(1);
-    $modx->request->registerLogging($_POST);
-    $modx->log(modX::LOG_LEVEL_INFO,'Running pre-import tests on submitted data...');
-    sleep(1);
 
     $importx = &$modx->importx;
     $modx->lexicon->load('importx:default');
+    $modx->request->registerLogging($_POST);
+
+    logConsole('info',$modx->lexicon('importx.log.runningpreimport'));
+    sleep(1);
 
     $sep = (isset($_POST['separator'])) ? $_POST['separator'] : $importx->config['separator'];
     if ($sep == '') { $sep = ';'; }
@@ -99,11 +99,11 @@
             }
             else {
                 if (intval(substr($h,2)) <= 0) {
-                    $he[] = $h.' ("'.substr($h,2).'" is expected to be an integer)';
+                    $he[] = $modx->lexicon('importx.err.intexpected',array('field' => $h, 'int' => substr($h,2)));
                 } else {
                     $tvo = $modx->getObject('modTemplateVar',substr($h,2));
                     if (!$tvo) {
-                        $he[] = $h.' (no TV with an ID of '.substr($h,2).')';
+                        $he[] = $modx->lexicon('importx.err.tvdoesnotexist', array('field' => $h, 'id' => substr($h,2)));
                     }
                 }
             }
@@ -116,7 +116,7 @@
     }
 
     unset($lines[0]);
-    logConsole('info','No errors in pre-import found. Preparing import values...');
+    logConsole('info', $modx->lexicon('importx.log.preimportclean'));
     sleep(1);
 
     $err = array();
@@ -136,7 +136,7 @@
     if (count($err) > 0) {
         return logConsole('error',$modx->lexicon('importx.err.elementmismatch',array('line' => implode(', ',$err))));
     }
-    logConsole('info','No errors found while checking the import values. Running import...');
+    logConsole('info',$modx->lexicon('importx.log.importvaluesclean'));
     $resourceCount = 0;
     foreach ($lines as $line) {
         $response = $modx->runProcessor('resource/create',$line);
@@ -153,7 +153,7 @@
         }
     }
     sleep(1);
-    logConsole('info','Importing completed. '.$resourceCount.' resources have been imported.');
+    logConsole('info',$modx->lexicon('importx.log.complete',array('count' => $resourceCount)));
     sleep(1); 
     logConsole('info','COMPLETED');
     sleep(1);

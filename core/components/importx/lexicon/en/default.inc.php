@@ -46,4 +46,10 @@ $_lang['importx.err.notenoughdata'] = 'Not enough data given. Expecting at least
 $_lang['importx.err.elementmismatch'] = 'Element count do not match. Please check for correct syntax on line [[+line]].';
 $_lang['importx.err.savefailed'] = 'An unexpected error occurred saving the resource.';
 $_lang['importx.err.invalidheader'] = 'Your header has one or more invalid fieldnames. The invalid fieldname(s) is (are): [[+fields]].';
+$_lang['importx.err.intexpected'] = '[[+field]] ([[+int]] is expected to be an integer)';
+$_lang['importx.err.tvdoesnotexist'] = '[[+field]] (no TV with an ID of [[+id]])';
+$_lang['importx.log.runningpreimport'] = 'Running pre-import tests on submitted data...';
+$_lang['importx.log.preimportclean'] = 'No errors in pre-import found. Preparing import values...';
+$_lang['importx.log.importvaluesclean'] = 'No errors found while checking the import values. Running import...';
+$_lang['importx.log.complete'] = 'Importing completed. [[+count]] resources have been imported.';
 ?>
