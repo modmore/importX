@@ -24,19 +24,19 @@
  */
 
 $_lang['importx'] = 'importX';
-$_lang['importx.description'] = 'Import your CSV formatted data into new Resources';
-$_lang['importx.desc'] = 'This component can be used to import CSV formatted files into new MODX Resources. Simply choose a parent to use and enter your CSV formatted information. The default separator is a semi-colon.';
-$_lang['importx.form.basic'] = 'Basic import';
-$_lang['importx.startbutton'] = 'Start import';
-$_lang['importx.importsuccess'] = 'Succesfully imported resources into MODX.';
-$_lang['importx.importfailure'] = 'Oops, an error occurred while importing your resources.';
-$_lang['importx.tab.input'] = 'CSV Input';
-$_lang['importx.tab.input.desc'] = 'Paste your raw text, separating records with a newline and fields with a semi-colon (;) or the separator of your choice, in the field below.';
-$_lang['importx.tab.input.sep'] = 'When your CSV formatted entry uses a different separator, you can declare it here. Leave empty to use a semi-colon.';
+$_lang['importx.description'] = 'Importer vos données CSV et transformez-les en ressources';
+$_lang['importx.desc'] = 'Ce composant peut être utilisé pour importer des ressources MODX depuis un fichier CSV. Spécifiez une ressource parente et entrez le contenu de votre fichier CSV. Le délimiteur par défaut est un point-virgule.';
+$_lang['importx.form.basic'] = 'Import classique';
+$_lang['importx.startbutton'] = 'Démarrer l\'import';
+$_lang['importx.importsuccess'] = 'Vos ressources ont été importées avec succès dans MODX.';
+$_lang['importx.importfailure'] = 'Oops, une erreur est survenue lors de l\'import de vos ressources.';
+$_lang['importx.tab.input'] = 'Entrée CSV';
+$_lang['importx.tab.input.desc'] = 'Collez votre texte brut ici. Chaque entrée doit être sur une ligne et les champs doivent être délimités par un point-virgule (;), ou tout autre délimiteur spécifié dans le champ ci-dessous.';
+$_lang['importx.tab.input.sep'] = 'Indiquez ici si votre fichier CSV utilise un délimiteur particulier. Laissez vide pour utiliser le point-virgule comme délimiteur par défaut.';
 $_lang['importx.csv'] = 'CSV brut';
 $_lang['importx.separator'] = 'Séparateur';
 $_lang['importx.tab.settings'] = 'Paramètres par défaut';
-$_lang['importx.tab.settings.desc'] = 'Veuillez indiquer les paramètres à utiliser par défaut. Vous pourrez outrepasser ces paramètres « by referencing the fieldname in your CSV formatted values ».';
+$_lang['importx.tab.settings.desc'] = 'Veuillez indiquer les paramètres à utiliser par défaut. Vous pourrez outrepasser ces paramètres en indiquant le nom des champs dans vos données CSV.';
 $_lang['importx.err.noparent'] = 'Veuillez indiquer le parent cible de l\'import. Indiquez 0 pour importer vos ressources à la racine de votre site.';
 $_lang['importx.err.parentnotnumeric'] = 'Parent non numérique.';
 $_lang['importx.err.parentlessthanzero'] = 'Le parent doit être un entier positif.';
