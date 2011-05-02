@@ -34,14 +34,16 @@ $_lang['importx.tab.input'] = 'CSV Input';
 // Modified 2/5/2011
 $_lang['importx.tab.input.desc'] = 'Paste or upload your CSV input, separating records with a newline and fields with a semi-colon (;) or the separator of your choice specified in the field below.';
 $_lang['importx.tab.input.sep'] = 'When your CSV formatted entry uses a different separator, you can declare it here. Leave empty to use a semi-colon.';
-$_lang['importx.csv'] = 'Raw CSV';
-// Added 2/5/2011:
+$_lang['importx.csv'] = 'Raw CSV:';
+// Added 2/5/2011: (2 items)
+$_lang['importx.parent'] = 'Parent:'; // Not parent resource, as this can also be a context!
 $_lang['importx.csvfile'] = 'CSV file upload';
 $_lang['importx.separator'] = 'Separator';
 $_lang['importx.tab.settings'] = 'Default Settings';
 $_lang['importx.tab.settings.desc'] = 'Specify the default settings to be used. You may override these per record by referencing the fieldname in your CSV formatted values.';
 $_lang['importx.err.noparent'] = 'Please choose a Parent to import to. Specify 0 to put new resources in the root of the site.';
-$_lang['importx.err.parentnotnumeric'] = 'Parent not numeric.';
+// Modified 2/5/2011:
+$_lang['importx.err.parentnotnumeric'] = 'Parent not numeric or valid context key.';
 $_lang['importx.err.parentlessthanzero'] = 'Parent needs to be a positive integer.';
 $_lang['importx.err.nocsv'] = 'Please add your CSV values in order for them to be processed.';
 // Added 2/5/2011:

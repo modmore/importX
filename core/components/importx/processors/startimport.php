@@ -57,9 +57,14 @@
 
     $parent = (isset($_POST['parent']))? $_POST['parent'] : 0;
     if (!is_numeric($parent)) {
-        return logConsole('error',$modx->lexicon('importx.err.parentnotnumeric'));
+        if ($modx->getObject('modContext',$parent)) {
+            $ctx = $parent;
+            $parent = 0;
+        } else {
+            return logConsole('error',$modx->lexicon('importx.err.parentnotnumeric'));
+        }
     }
-    if ($parent < 0) {
+    elseif ($parent < 0) {
         return logConsole('error',$modx->lexicon('importx.err.parentlessthanzero'));
     }
 
@@ -144,6 +149,7 @@
             $err[]  = $line;
         } else {
             $lines[$line] = array_combine($headings,$curline);
+            if ((!isset($lines[$line]['context_key'])) && (isset($ctx))) { $lines[$line]['context_key'] = $ctx; }
             if ((!isset($lines[$line]['parent'])) && (isset($parent))) { $lines[$line]['parent'] = $parent; }
             if ((!isset($lines[$line]['published'])) && (isset($published))) { $lines[$line]['published'] = $published; }
             if ((!isset($lines[$line]['searchable'])) && (isset($searchable))) { $lines[$line]['searchable'] = $searchable; }

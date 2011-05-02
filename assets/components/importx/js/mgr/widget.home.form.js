@@ -144,7 +144,7 @@ importX.panel.createImport = function(config) {
                         ,border: false
                     },{
                         xtype: 'textfield'
-                        ,fieldLabel: _('resource_parent') 
+                        ,fieldLabel: _('importx.parent')
                         ,name: 'parent'
                         ,id: 'importx-import-parent'
                         ,labelSeparator: ''
