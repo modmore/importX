@@ -23,7 +23,7 @@
  *
  */
 
-$_lang['importx'] = 'importX';
+$_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Import von CSV formatierten Daten in neue Ressourcen';
 $_lang['importx.desc'] = 'Dieses Plugin kann aus CSV formatierte Daten neue MODX Ressourcen erstellen. Einfach die Eltern-Ressource wählen und die CSV formatierten Daten wählen. Standardmäßig ist das Semikolon als Trennzeichen defininiert.';
 $_lang['importx.form.basic'] = 'Einfacher Import';

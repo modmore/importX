@@ -25,7 +25,7 @@
  * @updated 2011-04-25
  */
 
-$_lang['importx'] = 'importX';
+$_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Import CSV dat jako nové dokumenty';
 $_lang['importx.desc'] = 'Tato komponenta umožňuje naimportovat CSV data jako nové MODx dokumenty. Stačí vybrat, pod kterého rodiče má být nový dokument zařazen a zadat oddělená data. Výchozím oddělovačem je středník.';
 $_lang['importx.form.basic'] = 'Základní import';

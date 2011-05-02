@@ -11,7 +11,7 @@ $tstart = $tstart[1] + $tstart[0];
 set_time_limit(0);
 
 /* define package names */
-define('PKG_NAME','importX');
+define('PKG_NAME','ImportX');
 define('PKG_NAME_LOWER','importx');
 define('PKG_VERSION','0.9.0');
 define('PKG_RELEASE','alpha');
