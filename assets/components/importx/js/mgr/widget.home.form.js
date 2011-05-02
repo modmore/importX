@@ -81,6 +81,7 @@ importX.panel.createImport = function(config) {
         ,layout: 'fit'
         ,id: 'importx-panel-import'
         ,buttonAlign: 'center'
+        ,fileUpload: true
         ,items: [{
             //layout: 'form'
             bodyStyle: 'padding: 15px;'
@@ -119,6 +120,12 @@ importX.panel.createImport = function(config) {
                         ,height: 150
                         ,allowBlank: false
                         ,blankText: _('importx.nocsv')
+                    },{
+                        xtype: 'textfield',
+                        fieldLabel: _('importx.csvfile'),
+                        name: 'csv-file',
+                        id: 'csv-file',
+                        inputType: 'file'
                     },{
                         html: '<p>'+_('importx.tab.input.sep')+'</p>',
                         border: false
@@ -165,20 +172,7 @@ importX.panel.createImport = function(config) {
                         anchor: '100%'
                     }]
                 }]
-            }
-            /*,{
-                xtype: 'fileuploadfield',
-                buttonOnly: true
-                id: 'form-file',
-                emptyText: 'Select an image',
-                fieldLabel: 'Or, choose a file.',
-                name: 'csvfile',
-                buttonText: 'Browse',
-                buttonCfg: {
-                    iconCls: 'upload-icon'
-                },
-                buttonOnly: true
-            }*/]
+            }]
         }]
     });
     Ext.Ajax.timeout = 0;

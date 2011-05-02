@@ -31,9 +31,12 @@ $_lang['importx.startbutton'] = 'Start import';
 $_lang['importx.importsuccess'] = 'Succesfully imported resources into MODX.';
 $_lang['importx.importfailure'] = 'Oops, an error occurred while importing your resources.';
 $_lang['importx.tab.input'] = 'CSV Input';
-$_lang['importx.tab.input.desc'] = 'Paste your raw text, separating records with a newline and fields with a semi-colon (;) or the separator of your choice, in the field below.';
+// Modified 2/5/2011
+$_lang['importx.tab.input.desc'] = 'Paste or upload your CSV input, separating records with a newline and fields with a semi-colon (;) or the separator of your choice specified in the field below.';
 $_lang['importx.tab.input.sep'] = 'When your CSV formatted entry uses a different separator, you can declare it here. Leave empty to use a semi-colon.';
 $_lang['importx.csv'] = 'Raw CSV';
+// Added 2/5/2011:
+$_lang['importx.csvfile'] = 'CSV file upload';
 $_lang['importx.separator'] = 'Separator';
 $_lang['importx.tab.settings'] = 'Default Settings';
 $_lang['importx.tab.settings.desc'] = 'Specify the default settings to be used. You may override these per record by referencing the fieldname in your CSV formatted values.';
@@ -41,6 +44,8 @@ $_lang['importx.err.noparent'] = 'Please choose a Parent to import to. Specify 0
 $_lang['importx.err.parentnotnumeric'] = 'Parent not numeric.';
 $_lang['importx.err.parentlessthanzero'] = 'Parent needs to be a positive integer.';
 $_lang['importx.err.nocsv'] = 'Please add your CSV values in order for them to be processed.';
+// Added 2/5/2011:
+$_lang['importx.err.fileuploadfailed'] = 'Error reading the uploaded file.';
 $_lang['importx.err.invalidcsv'] = 'Invalid CSV value posted.';
 $_lang['importx.err.notenoughdata'] = 'Not enough data given. Expecting at least one header row, and one data row.';
 $_lang['importx.err.elementmismatch'] = 'Element count do not match. Please check for correct syntax on line [[+line]].';
@@ -49,7 +54,10 @@ $_lang['importx.err.invalidheader'] = 'Your header has one or more invalid field
 $_lang['importx.err.intexpected'] = '[[+field]] ([[+int]] is expected to be an integer)';
 $_lang['importx.err.tvdoesnotexist'] = '[[+field]] (no TV with an ID of [[+id]])';
 $_lang['importx.log.runningpreimport'] = 'Running pre-import tests on submitted data...';
+// Added 2/5/2011:
+$_lang['importx.log.fileuploadfound'] = 'CSV file upload overriding any manual input. Filename: [[+filename]]';
 $_lang['importx.log.preimportclean'] = 'No errors in pre-import found. Preparing import values...';
-$_lang['importx.log.importvaluesclean'] = 'No errors found while checking the import values. Running import...';
+// Modified 2/5/2011:
+$_lang['importx.log.importvaluesclean'] = 'No errors found while checking the import values: [[+count]] items found. Running import...';
 $_lang['importx.log.complete'] = 'Importing completed. [[+count]] resources have been imported.';
 ?>

@@ -63,7 +63,25 @@
         return logConsole('error',$modx->lexicon('importx.err.parentlessthanzero'));
     }
 
-    $csv = (isset($_POST['csv'])) ? trim($_POST['csv']) : false;
+    // Handle file uploads
+    if (!empty($_FILES['csv-file']['name'])) {
+        logConsole('info',$modx->lexicon('importx.log.fileuploadfound',array('filename' => $_FILES['csv-file']['name'])));
+        $csv = file_get_contents($_FILES['csv-file']['tmp_name']);
+        if ($csv === false) { return logConsole('error',$modx->lexicon('importx.err.fileuploadfailed')); }
+    }
+
+    // Only if no file was uploaded check the manual input
+    if ((!isset($csv) || $csv === false) &&
+        (isset($_POST['csv']) && !empty($_POST['csv']))) {
+        $csv = trim($_POST['csv']);
+    }
+
+    // When no CSV detected (file or manual input), throw an error for that.
+    if (!isset($csv) || ($csv === false) || empty($csv)) {
+        return logConsole('error',$modx->lexicon('importx.err.nocsv'));
+    }
+
+    // Check a minimum length-ish (debatable - might be a useless check really)
     if (strlen($csv) < 10) {
         return logConsole('error',$modx->lexicon('importx.err.invalidcsv'),true);
     }
@@ -136,7 +154,7 @@
     if (count($err) > 0) {
         return logConsole('error',$modx->lexicon('importx.err.elementmismatch',array('line' => implode(', ',$err))));
     }
-    logConsole('info',$modx->lexicon('importx.log.importvaluesclean'));
+    logConsole('info',$modx->lexicon('importx.log.importvaluesclean',array('count' => count($lines))));
     $resourceCount = 0;
     foreach ($lines as $line) {
         $response = $modx->runProcessor('resource/create',$line);
