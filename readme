@@ -1,6 +1,6 @@
-importX
+ImportX
 
-importX is a utility addon designed to allow users
+ImportX is a utility addon designed to allow users
 to import comma seperated values (CSV) into the MODX
 system as new resources.
 
@@ -18,3 +18,9 @@ is not, it will throw an error.
 TVs need to be specified by the prefix "tv" and the ID
 of the TV it needs to be added to, like "tv2" in the
 example heading above.
+
+CSV can be imported from manual input (copy/paste) or
+from file upload.
+
+ImportX has been developed with funding by Working Party,
+a Sydney based Digital Agency.
