@@ -23,7 +23,7 @@
  *
  */
 
-$_lang['importx'] = 'importX';
+$_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Importer vos données CSV et transformez-les en ressources';
 $_lang['importx.desc'] = 'Ce composant peut être utilisé pour importer des ressources MODX depuis un fichier CSV. Spécifiez une ressource parente et entrez le contenu de votre fichier CSV. Le délimiteur par défaut est un point-virgule.';
 $_lang['importx.form.basic'] = 'Import classique';
