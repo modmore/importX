@@ -22,7 +22,8 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-
+// Last update: 25/4/2011
+// Translator: Mark Hamstra
 $_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Importeer CSV gegevens als nieuwe resources.';
 $_lang['importx.desc'] = 'Deze addon kan gebruikt worden om CSV gegevens te importeren naar nieuwe MODX resources. Kies een bovenliggende resource, en voer je CSV gegevens in. Het standaard scheidingsteken is een puntkomma.';

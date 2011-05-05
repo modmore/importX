@@ -24,7 +24,8 @@
  * @author modxcms.cz
  * @updated 2011-04-25
  */
-
+// Last update: 25/4/2011
+// Translator: Hansek
 $_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Import CSV dat jako nové dokumenty';
 $_lang['importx.desc'] = 'Tato komponenta umožňuje naimportovat CSV data jako nové MODx dokumenty. Stačí vybrat, pod kterého rodiče má být nový dokument zařazen a zadat oddělená data. Výchozím oddělovačem je středník.';

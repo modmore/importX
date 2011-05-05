@@ -22,7 +22,8 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-
+// Last update: 26/4/2011
+// Translator: spackko [http://modxcms.com/forums/index.php/topic,63812.msg361212.html#msg361212]
 $_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Import von CSV formatierten Daten in neue Ressourcen';
 $_lang['importx.desc'] = 'Dieses Plugin kann aus CSV formatierte Daten neue MODX Ressourcen erstellen. Einfach die Eltern-Ressource wählen und die CSV formatierten Daten wählen. Standardmäßig ist das Semikolon als Trennzeichen defininiert.';

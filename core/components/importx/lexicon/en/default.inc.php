@@ -22,7 +22,8 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-
+// Last update: 2/5/2011
+// Translator: Mark Hamstra
 $_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Import your CSV formatted data into new Resources';
 $_lang['importx.desc'] = 'This component can be used to import CSV formatted files into new MODX Resources. Simply choose a parent to use and enter your CSV formatted information. The default separator is a semi-colon.';
