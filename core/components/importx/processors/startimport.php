@@ -171,7 +171,7 @@
             } else {
                 $errorMessage = $modx->lexicon('importx.err.savefailed')."\n".print_r($response->getMessage(),true);
             }
-            return logConsole('error',$modx->error->failure($errorMessage));
+            return logConsole('error',$errorMessage);
         } else {
             $resourceCount++;
         }
