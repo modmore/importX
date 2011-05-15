@@ -22,7 +22,7 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-// Last update: 29/4/2011
+// Last update: 11/5/2011
 // Translator: MeltingMedia 
 $_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Importer vos données CSV et transformez-les en ressources';
