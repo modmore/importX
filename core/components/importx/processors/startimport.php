@@ -144,6 +144,11 @@
 
     $err = array();
     foreach ($lines as $line => $lineval) {
+        $lineval = trim($lineval);
+        if (substr($lineval,-strlen($sep)) == $sep) {
+            $lineval = substr($lineval,0,-strlen($sep));
+        }
+        
         $curline = explode($sep,$lineval);
         if ($headingcount != count($curline)) {
             $err[]  = $line;
