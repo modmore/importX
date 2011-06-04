@@ -1,20 +1,24 @@
-ImportX 1.0.0-pl (to be released)
-    Add help button linking to the documentation
-#17 [bugfix] Trailing separator now also removed in values
+++ ImportX 1.0.0-pl (to be released)
++++++++++++++++++++++++++++++++++++++++
+Add help button linking to the documentation
+#17: [bugfix] Trailing separator now also removed in values
 
-ImportX 1.0.0-rc (2/5/2011)
-#9  Allow parent field to be used to specify a context_key when importing to root.
-#7  Add CSV file upload.
-    Translations added: French, Czech, German, Dutch
+++ ImportX 1.0.0-rc (May 2, 2011)
++++++++++++++++++++++++++++++++++++++++
+#9: Allow parent field to be used to specify a context_key when importing to root.
+#7: Add CSV file upload.
+Translations added: French, Czech, German, Dutch
 
-ImportX 0.9.0-alpha (25/4/2011)
-#3  [bugfix] Workaround for bug with console not logging after calling runProcessor.
-#6  Make component translatable with lexicons.
+++ ImportX 0.9.0-alpha (April 25, 2011)
++++++++++++++++++++++++++++++++++++++++
+#3: [bugfix] Workaround for bug with console not logging after calling runProcessor.
+#6: Make component translatable with lexicons.
 
-ImportX 0.2.0-alpha (23/4/2011)
-    First packaged release.
-#5  Make console re-usable.
+++ ImportX 0.2.0-alpha (April 23, 2011)
++++++++++++++++++++++++++++++++++++++++
+First packaged release.
+#5: Make console re-usable.
 
-
-ImportX 0.1-Alpha1 (7/4/2011)
+++ImportX 0.1-Alpha1 (April 7, 2011)
++++++++++++++++++++++++++++++++++++++++
 Initial release.
