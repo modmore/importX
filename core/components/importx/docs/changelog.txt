@@ -1,4 +1,4 @@
-++ ImportX 1.0.0-pl (to be released)
+++ ImportX 1.0.0-pl (June 4, 2011)
 +++++++++++++++++++++++++++++++++++++++
 Add help button linking to the documentation
 #17: [bugfix] Trailing separator now also removed in values
