@@ -1,6 +1,7 @@
 ++ ImportX 1.0.0-pl (June 4, 2011)
 +++++++++++++++++++++++++++++++++++++++
 Add help button linking to the documentation
+#11: [bugfix] Make sure to show actual error from processor instead of array
 #17: [bugfix] Trailing separator now also removed in values
 
 ++ ImportX 1.0.0-rc (May 2, 2011)
