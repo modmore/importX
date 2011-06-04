@@ -30,3 +30,4 @@ Ext.extend(importX,Ext.Component,{
 });
 Ext.reg('importx',importX);
 importX = new importX();
+MODx.config.help_url = 'http://rtfm.modx.com/display/ADDON/ImportX';
