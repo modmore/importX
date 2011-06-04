@@ -19,6 +19,6 @@ Translations added: French, Czech, German, Dutch
 First packaged release.
 #5: Make console re-usable.
 
-++ImportX 0.1-Alpha1 (April 7, 2011)
+++ ImportX 0.1-Alpha1 (April 7, 2011)
 +++++++++++++++++++++++++++++++++++++++
 Initial release.
