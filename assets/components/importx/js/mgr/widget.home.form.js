@@ -57,6 +57,9 @@ importX.page.createImport = function(config) {
                     }
                 });
             }
+        },{
+            text: _('help_ex'),
+            handler: MODx.loadHelpPane
         }]
         ,components: [{
             xtype: 'importx-form-create-import'
