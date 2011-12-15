@@ -58,6 +58,16 @@ $importx = &$modx->importx;
 $modx->lexicon->load('importx:default');
 $modx->request->registerLogging($_POST);
 
+/* Set a time out limit */
+if (ini_get('safe_mode')) {
+    logConsole('warn',$modx->lexicon('importx.log.safemodeon'));
+} else {
+    set_time_limit(0);
+    $limit = ini_get('max_execution_time');
+    $limit = ($limit > 0) ? $limit : $modx->lexicon('importx.infinite');
+    logConsole('info',$modx->lexicon('importx.log.timelimit',array('limit' => $limit)));
+}
+
 logConsole('info',$modx->lexicon('importx.log.runningpreimport'));
 sleep(1);
 

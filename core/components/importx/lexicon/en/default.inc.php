@@ -63,4 +63,8 @@ $_lang['importx.log.preimportclean'] = 'No errors in pre-import found. Preparing
 // Modified 2/5/2011:
 $_lang['importx.log.importvaluesclean'] = 'No errors found while checking the import values: [[+count]] items found. Running import...';
 $_lang['importx.log.complete'] = 'Importing completed. [[+count]] resources have been imported.';
+// Added 15/12/20111
+$_lang['importx.log.safemodeon'] = 'It seems like safe_mode is enabled on your server. This means ImportX cannot change the max execution time and it is possible the script will timeout in roughly 30 seconds. ';
+$_lang['importx.log.timelimit'] = 'Attempted to set execution time to infinite. Max execution time currently: [[+limit]].';
+$_lang['importx.infinite'] = 'infinite';
 ?>
