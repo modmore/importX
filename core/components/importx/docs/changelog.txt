@@ -1,3 +1,11 @@
+++ ImportX 1.1.0-rc (December 12, 2011)
++++++++++++++++++++++++++++++++++++++++
+#13 Refactor/normalize to open up the ability to import from different formats. Contributions are welcome! 
+Improve looks on MODX 2.2, cleanup code a bit. 
+Allow 2.1+ fieldnames (uri, uri_override).
+#20 Defaults are now set based on the appropriate system settings
+#28/#22 Ability to update instead of create
+
 ++ ImportX 1.0.0-pl (June 4, 2011)
 +++++++++++++++++++++++++++++++++++++++
 Add help button linking to the documentation
