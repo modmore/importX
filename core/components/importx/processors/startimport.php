@@ -78,7 +78,7 @@ elseif ($parent < 0) {
 }
 
 // Handle file uploads
-if (!empty($_FILES['csv-file']['name'])) {
+if (!empty($_FILES['csv-file']['name']) && !empty($_FILES['csv-file']['tmp_name'])) {
     logConsole('info',$modx->lexicon('importx.log.fileuploadfound',array('filename' => $_FILES['csv-file']['name'])));
     $csv = file_get_contents($_FILES['csv-file']['tmp_name']);
     if ($csv === false) { return logConsole('error',$modx->lexicon('importx.err.fileuploadfailed')); }
@@ -122,7 +122,7 @@ $headingcount = count($headings);
 
 // Validate the headers...
 $he = array(); // HeadingErrors
-$fields = array('id', 'type', 'contentType', 'pagetitle', 'longtitle',  'alias', 'description', 'link_attributes', 'published', 'pub_date', 'unpub_date', 'parent', 'isfolder', 'introtext', 'content', 'richtext', 'template', 'menuindex', 'searchable', 'cacheable', 'createdby', 'createdon', 'editedby', 'editedon', 'deleted', 'deletedon', 'deletedby', 'publishedon', 'publishedby', 'menutitle', 'donthit', 'haskeywords', 'hasmetatags', 'privateweb', 'privatemgr', 'content_dispo', 'hidemenu', 'class_key', 'context_key', 'content_type');
+$fields = array('id', 'type', 'contentType', 'pagetitle', 'longtitle',  'alias', 'description', 'link_attributes', 'published', 'pub_date', 'unpub_date', 'parent', 'isfolder', 'introtext', 'content', 'richtext', 'template', 'menuindex', 'searchable', 'cacheable', 'createdby', 'createdon', 'editedby', 'editedon', 'deleted', 'deletedon', 'deletedby', 'publishedon', 'publishedby', 'menutitle', 'donthit', 'haskeywords', 'hasmetatags', 'privateweb', 'privatemgr', 'content_dispo', 'hidemenu', 'class_key', 'context_key', 'content_type', 'uri', 'uri_override');
 foreach ($headings as $h) {
     $h = trim($h);
     if (!in_array($h,$fields)) {
