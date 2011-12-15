@@ -85,6 +85,7 @@ importX.panel.createImport = function(config) {
         ,id: 'importx-panel-import'
         ,buttonAlign: 'center'
         ,fileUpload: true
+        ,width: '98%'
         ,items: [{
             border: true
             ,labelWidth: 150
