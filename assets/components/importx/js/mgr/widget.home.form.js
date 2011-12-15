@@ -86,43 +86,41 @@ importX.panel.createImport = function(config) {
         ,buttonAlign: 'center'
         ,fileUpload: true
         ,items: [{
-            //layout: 'form'
-            bodyStyle: 'padding: 15px;'
-            ,border: true
+            border: true
             ,labelWidth: 150
-            ,width: '100%'
             ,autoHeight: true
             ,buttonAlign: 'center'
             ,items: [{
                 html: '<p>'+_('importx.desc')+'</p>',
-                border: false
+                border: false,
+                bodyCssClass: 'panel-desc'
             },{
                 xtype: 'modx-tabs',
-                deferredRender:false,
+                cls: 'main-wrapper',
+                deferredRender: false,
                 forceLayout: true,
                 defaults: {
-                    layout:'form'
-                    ,labelWidth:150
-                    ,bodyStyle:'padding:15px'
-                    ,autoHeight: true
-                    ,hideMode:'offsets'
+                    layout: 'form',
+                    autoHeight: true,
+                    hideMode: 'offsets',
+                    padding: 15
                 },
                 items: [{
                     xtype: 'modx-panel',
                     title: _('importx.tab.input'),
                     items: [{
-                        html: '<p>'+_('importx.tab.input.desc')+'</p>'
-                        ,border: false
+                        html: '<p>'+_('importx.tab.input.desc')+'</p>',
+                        border: false
                     },{
-                        xtype: 'textarea'
-                        ,fieldLabel: _('importx.csv') 
-                        ,name: 'csv'
-                        ,id: 'importx-import-csv'
-                        ,labelSeparator: ''
-                        ,anchor: '100%'
-                        ,height: 150
-                        ,allowBlank: false
-                        ,blankText: _('importx.nocsv')
+                        xtype: 'textarea',
+                        fieldLabel: _('importx.csv'), 
+                        name: 'csv',
+                        id: 'importx-import-csv',
+                        labelSeparator: '',
+                        anchor: '100%',
+                        height: 150,
+                        allowBlank: false,
+                        blankText: _('importx.nocsv')
                     },{
                         xtype: 'textfield',
                         fieldLabel: _('importx.csvfile'),
@@ -142,6 +140,7 @@ importX.panel.createImport = function(config) {
                     }]
                 },{
                     title: _('importx.tab.settings'),
+                    id: 'importx-defaults',                    
                     items: [{
                         html: '<p>'+_('importx.tab.settings.desc')+'</p>'
                         ,border: false
@@ -160,19 +159,22 @@ importX.panel.createImport = function(config) {
                         fieldLabel: _('resource_published'),
                         name: 'published',
                         id: 'importx-import-published',
-                        anchor: '100%'
+                        anchor: '100%',
+                        checked: importX.defaults['published']
                     },{
                         xtype: 'checkbox',
                         fieldLabel: _('resource_searchable'),
                         name: 'searchable',
                         id: 'importx-import-searchable',
-                        anchor: '100%'
+                        anchor: '100%',
+                        checked: importX.defaults['searchable']
                     },{
                         xtype: 'checkbox',
                         fieldLabel: _('resource_hide_from_menus'),
                         name: 'hidemenu',
                         id: 'importx-import-hidemenu',
-                        anchor: '100%'
+                        anchor: '100%',
+                        checked: importX.defaults['hidemenu']
                     }]
                 }]
             }]

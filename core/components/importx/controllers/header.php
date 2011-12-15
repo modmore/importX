@@ -24,9 +24,17 @@
  */
 $modx->regClientStartupScript($importx->config['jsUrl'].'mgr/importx.js');
 //$modx->regClientStartupScript($importx->config['jsUrl'].'mgr/fileupload.xtype.js');
+$defaults = array();
+$defaults['richtext'] = (boolean)$modx->getOption('richtext_default',null,true);
+$defaults['template'] = (int)$modx->getOption('default_template',null,1);
+$defaults['hidemenu'] = (boolean)$modx->getOption('hidemenu_default',null,false);
+$defaults['published'] = (boolean)$modx->getOption('publish_default',null,true);
+$defaults['searchable'] = (boolean)$modx->getOption('search_default',null,true);
+$defaults = $modx->toJSON($defaults);
 $modx->regClientStartupHTMLBlock('<script type="text/javascript">
 Ext.onReady(function() {
     importX.config = '.$modx->toJSON($importx->config).';
+    importX.defaults = '.$defaults.';
 });
 </script>');
 return '';

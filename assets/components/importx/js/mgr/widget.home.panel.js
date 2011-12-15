@@ -24,13 +24,9 @@
 importX.panel.Tabs = function(config) {
     config = config || {};
     Ext.apply(config,{
-        border: false
-        ,baseCls: 'modx-formpanel'
-        ,items: [{
-            html: '<h2>'+_('importx')+'</h2>'
-            ,border: false
-            ,cls: 'modx-page-header'
-        }]
+        border: false,
+        baseCls: 'x-panel',
+        items: []
     });
     importX.panel.Tabs.superclass.constructor.call(this,config);
 };

@@ -30,8 +30,12 @@ importX.page.Home = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         renderTo: 'importx-panel-home-div'
+        ,cls: 'container'
         ,components: [{
-            xtype: 'importx-panel-tabs'
+            xtype: 'panel',
+            html: '<h2>'+_('importx')+'</h2>',
+            border: false,
+            cls: 'modx-page-header'
         },{
             xtype: 'importx-page-import'
         }]
