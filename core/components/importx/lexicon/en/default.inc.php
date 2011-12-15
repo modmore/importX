@@ -54,8 +54,6 @@ $_lang['importx.err.notenoughdata'] = 'Not enough data given. Expecting at least
 $_lang['importx.err.elementmismatch'] = 'Element count do not match. Please check for correct syntax on line [[+line]].';
 $_lang['importx.err.savefailed'] = 'An unexpected error occurred saving the resource.';
 $_lang['importx.err.invalidheader'] = 'Your header has one or more invalid fieldnames. The invalid fieldname(s) is (are): [[+fields]].';
-$_lang['importx.err.intexpected'] = '[[+field]] ([[+int]] is expected to be an integer)';
-$_lang['importx.err.tvdoesnotexist'] = '[[+field]] (no TV with an ID of [[+id]])';
 $_lang['importx.log.runningpreimport'] = 'Running pre-import tests on submitted data...';
 // Added 2/5/2011:
 $_lang['importx.log.fileuploadfound'] = 'CSV file upload overriding any manual input. Filename: [[+filename]]';
@@ -63,8 +61,13 @@ $_lang['importx.log.preimportclean'] = 'No errors in pre-import found. Preparing
 // Modified 2/5/2011:
 $_lang['importx.log.importvaluesclean'] = 'No errors found while checking the import values: [[+count]] items found. Running import...';
 $_lang['importx.log.complete'] = 'Importing completed. [[+count]] resources have been imported.';
-// Added 15/12/20111
+
+// Added or modified 15/12/20111
 $_lang['importx.log.safemodeon'] = 'It seems like safe_mode is enabled on your server. This means ImportX cannot change the max execution time and it is possible the script will timeout in roughly 30 seconds. ';
 $_lang['importx.log.timelimit'] = 'Attempted to set execution time to infinite. Max execution time currently: [[+limit]].';
 $_lang['importx.infinite'] = 'infinite';
+$_lang['importx.log.classnf'] = 'The requested import class [[+type]] could not be found.';
+$_lang['importx.err.invalidfield'] = 'Invalid field: [[+field]]';
+$_lang['importx.err.intexpected'] = 'Invalid field: [[+field]] ([[+int]] is expected to be an integer)';
+$_lang['importx.err.tvdoesnotexist'] = 'Invalid field: [[+field]] (no TV with an ID of [[+id]])';
 ?>
