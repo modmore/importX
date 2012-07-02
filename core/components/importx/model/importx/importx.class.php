@@ -102,13 +102,14 @@ class importX {
             case 'complete':
                 $this->modx->log(modX::LOG_LEVEL_INFO,'COMPLETED');
                 sleep(1);
+                break;
             case 'warn':
                 $this->modx->log(modX::LOG_LEVEL_WARN,$msg);
-                break;
                 break;
             default:
             case 'info':
                 $this->modx->log(modX::LOG_LEVEL_INFO,$msg);
+                break;
         }
     }
     
@@ -160,14 +161,13 @@ class importX {
     private function setExecutionLimit() {
         /* Set a time out limit */
         if (ini_get('safe_mode')) {
-            $this->modx->log('warn',$this->modx->lexicon('importx.log.safemodeon'));
+            $this->log('warn',$this->modx->lexicon('importx.log.safemodeon'));
         } else {
             set_time_limit(0);
             $limit = ini_get('max_execution_time');
             $limit = ($limit > 0) ? $limit : $this->modx->lexicon('importx.infinite');
-            $this->modx->log('info',$this->modx->lexicon('importx.log.timelimit',array('limit' => $limit)));
+            $this->log('info',$this->modx->lexicon('importx.log.timelimit',array('limit' => $limit)));
         }
     }
 }
 
-?>
