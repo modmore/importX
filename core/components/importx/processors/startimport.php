@@ -54,6 +54,7 @@ foreach ($lines as $line) {
         } else {
             $errorMessage = $modx->lexicon('importx.err.savefailed')."\n".print_r($response->getMessage(),true);
         }
+        $this->modx->importx->log('warn',$resourceCount.' of '.count($lines).' resources were imported successfully');
         $this->modx->importx->log('error',$errorMessage);
         return $this->modx->importx->log('complete','');
     } else {
