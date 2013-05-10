@@ -62,6 +62,7 @@ class prepareCsv extends prepareImport {
                 if (!isset($lines[$line]['published'])) { $lines[$line]['published'] = $this->importx->defaults['published']; }
                 if (!isset($lines[$line]['searchable'])) { $lines[$line]['searchable'] = $this->importx->defaults['searchable']; }
                 if (!isset($lines[$line]['hidemenu'])) { $lines[$line]['hidemenu'] = $this->importx->defaults['hidemenu']; }
+                $lines[$line]['tvs'] = true; // makes tvs save on update
             }
         }
         if (count($err) > 0) {
