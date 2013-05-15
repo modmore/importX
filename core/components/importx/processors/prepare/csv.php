@@ -15,6 +15,7 @@ class prepareCsv extends prepareImport {
         }
         $headings = explode($this->importx->config['separator'],$headingline);
         $headingcount = count($headings);
+        $tvInHeadings = false;
         
         // Validate the headers...
         $fields = array('id', 'type', 'contentType', 'pagetitle', 'longtitle',  'alias', 'description', 'link_attributes', 'published', 'pub_date', 'unpub_date', 'parent', 'isfolder', 'introtext', 'content', 'richtext', 'template', 'menuindex', 'searchable', 'cacheable', 'createdby', 'createdon', 'editedby', 'editedon', 'deleted', 'deletedon', 'deletedby', 'publishedon', 'publishedby', 'menutitle', 'donthit', 'haskeywords', 'hasmetatags', 'privateweb', 'privatemgr', 'content_dispo', 'hidemenu', 'class_key', 'context_key', 'content_type', 'uri', 'uri_override');
@@ -25,6 +26,7 @@ class prepareCsv extends prepareImport {
                     $this->importx->errors[] = $this->modx->lexicon('importx.err.invalidfield',array('field' => $h));
                 }
                 else {
+                	$tvInHeadings = true;
                     if (intval(substr($h,2)) <= 0) {
                         $this->importx->errors[] = $this->modx->lexicon('importx.err.intexpected',array('field' => $h, 'int' => substr($h,2)));
                     } else {
@@ -62,7 +64,7 @@ class prepareCsv extends prepareImport {
                 if (!isset($lines[$line]['published'])) { $lines[$line]['published'] = $this->importx->defaults['published']; }
                 if (!isset($lines[$line]['searchable'])) { $lines[$line]['searchable'] = $this->importx->defaults['searchable']; }
                 if (!isset($lines[$line]['hidemenu'])) { $lines[$line]['hidemenu'] = $this->importx->defaults['hidemenu']; }
-                $lines[$line]['tvs'] = true; // makes tvs save on update
+                if($tvInHeadings) $lines[$line]['tvs'] = true; // makes tvs save on update
             }
         }
         if (count($err) > 0) {
