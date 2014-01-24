@@ -56,7 +56,7 @@ class prepareCsv extends prepareImport {
             
             $curline = explode($this->importx->config['separator'],$lineval);
             if ($headingcount != count($curline)) {
-                $err[] = $line;
+                $err[] = $line + 1; // add one, because array reference is zero based, line reference in csv data is not
             } else {
                 $lines[$line] = array_combine($headings,$curline);
                 if (!isset($lines[$line]['context_key'])) { $lines[$line]['context_key'] = $this->importx->defaults['context_key']; }
