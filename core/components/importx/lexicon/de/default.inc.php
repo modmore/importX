@@ -2,7 +2,7 @@
 /*
  * importX
  *
- * Copyright 2011 by Mark Hamstra (http://www.markhamstra.nl)
+ * Copyright 2011-2014 by Mark Hamstra (https://www.markhamstra.com)
  * Development funded by Working Party, a Sydney based digital agency.
  *
  * All rights reserved.
