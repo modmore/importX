@@ -1,3 +1,10 @@
+++ ImportX 1.1.1-pl (January 29, 2014)
++++++++++++++++++++++++++++++++++++++++
+#50 Issue saving TVs on update (thanks @jpdevries)
+#46 Improve reporting when importing fails (thanks @christianhanvey)
+#45 Fix line number reference off by 1 when there's an element mismatch (thanks @christianhanvey)
+
+
 ++ ImportX 1.1.0-rc (December 12, 2011)
 +++++++++++++++++++++++++++++++++++++++
 #13 Refactor/normalize to open up the ability to import from different formats. Contributions are welcome! 
