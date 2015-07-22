@@ -132,6 +132,13 @@ importX.panel.createImport = function(config) {
                         html: '<p>'+_('importx.tab.input.sep')+'</p>',
                         border: false
                     },{
+                        xtype: 'checkbox',
+                        fieldLabel: _('importx.wordpress'),
+                        name:  'wordpress',
+                        id: 'importx-import-wordpress',
+                        anchor: '100%',
+                        allowBlank: true
+                    },{
                         xtype: 'textfield',
                         fieldLabel: _('importx.separator'),
                         name:  'separator',
@@ -169,6 +176,20 @@ importX.panel.createImport = function(config) {
                         id: 'importx-import-searchable',
                         anchor: '100%',
                         checked: importX.defaults['searchable']
+                    },{
+                        xtype: 'textfield',
+                        fieldLabel: _('importx.template'),
+                        name:  'template',
+                        id: 'importx-import-template',
+                        anchor: '100%',
+                        allowBlank: true
+                    },{
+                        xtype: 'textfield',
+                        fieldLabel: _('importx.mediasource'),
+                        name:  'mediasource',
+                        id: 'importx-import-mediasource',
+                        anchor: '100%',
+                        allowBlank: true
                     },{
                         xtype: 'checkbox',
                         fieldLabel: _('resource_hide_from_menus'),

@@ -39,6 +39,9 @@ $_lang['importx.csv'] = 'Raw Data:';
 // Added 2/5/2011: (2 items)
 $_lang['importx.parent'] = 'Parent:'; // Not parent resource, as this can also be a context!
 $_lang['importx.csvfile'] = 'Data file upload';
+$_lang['importx.wordpress'] = 'Wordpress XML export';
+$_lang['importx.mediasource'] = 'Mediasource ID to upload Wordpress images to';
+$_lang['importx.template'] = 'Default Template ID for Wordpress';
 $_lang['importx.separator'] = 'Separator';
 $_lang['importx.tab.settings'] = 'Default Settings';
 $_lang['importx.tab.settings.desc'] = 'Specify the default settings to be used. You may override these per record by referencing the fieldname in your CSV formatted values.';

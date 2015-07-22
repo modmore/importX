@@ -32,9 +32,14 @@ sleep(1);
 
 /* Get the data and prepare it */
 $modx->importx->getData();
-sleep(1);
+// sleep(1);
+if ( isset($_POST['wordpress']) && $_POST['wordpress'] == 'on') {
+    $modx->importx->log('info', 'Set to Wordpress import ');
+    $modx->importx->setType('wordpress');
+}
 $lines = $modx->importx->prepareData();
 
+$modx->importx->log('info', 'Data Prepared');
 if ($lines === false) {
     $modx->importx->log('complete','');
     return $this->modx->error->failure();    
@@ -47,6 +52,8 @@ $processor = 'resource/'.$modx->getOption('importx.processor',null,'create');
 foreach ($lines as $line) {
     /* @var modProcessorResponse $response */
     $response = $modx->runProcessor($processor,$line);
+    $modx->importx->log('info', 'A line has been processed');
+    sleep(0.2);
     if ($response->isError()) {
         if ($response->hasFieldErrors()) {
             $fieldErrors = $response->getAllErrors();
@@ -67,4 +74,3 @@ sleep(1);
 $this->modx->importx->log('complete','');
 sleep(1);
 return $modx->error->success();
-?>

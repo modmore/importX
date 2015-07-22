@@ -71,7 +71,10 @@ class importX {
         if (!empty($_FILES['csv-file']['name']) && !empty($_FILES['csv-file']['tmp_name'])) {
             $this->log('info',$this->modx->lexicon('importx.log.fileuploadfound',array('filename' => $_FILES['csv-file']['name'])));
             $data = file_get_contents($_FILES['csv-file']['tmp_name']);
-            if ($data === false) { return $this->log('error',$this->modx->lexicon('importx.err.fileuploadfailed')); }
+
+            if ($data === false) {
+                return $this->log('error',$this->modx->lexicon('importx.err.fileuploadfailed'));
+            }
         }
         
         // Only if no file was uploaded check the manual input
@@ -82,14 +85,16 @@ class importX {
         
         // When no CSV detected (file or manual input), throw an error for that.
         if (!isset($data) || ($data === false) || empty($data)) {
-            return $this->log('error',$this->modx->lexicon('importx.err.nocsv'));
+            $this->log('error',$this->modx->lexicon('importx.err.nocsv'));
+            return false;
         }
         
         // Check a minimum length-ish (debatable - might be a useless check really)
         if (strlen($data) < 10) {
-            return $this->log('error',$this->modx->lexicon('importx.err.invalidcsv'),true);
+            $this->log('error',$this->modx->lexicon('importx.err.invalidcsv'));
+            return false;
         }
-        
+        $this->log('error', 'Return data ');
         $this->data = $data;
         return $data;
     }
@@ -112,13 +117,27 @@ class importX {
                 break;
         }
     }
-    
+
+    /**
+     * @param string $type
+     * @return VOID
+     */
+    public function setType($type) {
+        $this->type = $type;
+    }
+    /**
+     * @return array|bool
+     */
     public function prepareData() {
+        $this->log('error', 'Start Prepare');
         $file = $this->config['processorsPath'].'prepare/'.$this->type.'.php';
+
         if (file_exists($file)) {
+            $this->log('error', 'Processor Found');
             $class = include $file;
             if ($class) {
                 $this->prepClass = new $class($this->modx, $this, $this->data);
+                $this->log('error', 'Class loaded: '.$class);
                 $this->preparedData = $this->prepClass->process();
                 if (is_array($this->preparedData)) {
                     return $this->preparedData;

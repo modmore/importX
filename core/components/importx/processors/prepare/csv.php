@@ -2,6 +2,9 @@
 
 require_once ('prepare.class.php');
 class prepareCsv extends prepareImport {
+    /**
+     * @return array|bool
+     */
     function process() {
         $lines = explode("\n",$this->data);
         if (count($lines) <= 1) {

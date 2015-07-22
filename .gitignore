@@ -1,3 +1,5 @@
 .idea*
 config.core.php
 test-csv-format.txt
+
+core/components/importx/test/powergear.wordpress.2015-07-09.xml
