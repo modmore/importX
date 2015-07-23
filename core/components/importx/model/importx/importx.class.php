@@ -94,7 +94,7 @@ class importX {
             $this->log('error',$this->modx->lexicon('importx.err.invalidcsv'));
             return false;
         }
-        $this->log('error', 'Return data ');
+
         $this->data = $data;
         return $data;
     }
@@ -129,15 +129,15 @@ class importX {
      * @return array|bool
      */
     public function prepareData() {
-        $this->log('error', 'Start Prepare');
+        $this->log('info', 'PrepareData');
         $file = $this->config['processorsPath'].'prepare/'.$this->type.'.php';
 
         if (file_exists($file)) {
-            $this->log('error', 'Processor Found');
+            $this->log('info', 'Processor Found');
             $class = include $file;
             if ($class) {
                 $this->prepClass = new $class($this->modx, $this, $this->data);
-                $this->log('error', 'Class loaded: '.$class);
+                $this->log('info', 'Class loaded: '.$class);
                 $this->preparedData = $this->prepClass->process();
                 if (is_array($this->preparedData)) {
                     return $this->preparedData;

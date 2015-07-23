@@ -103,11 +103,19 @@ class Wordpress extends WordpressImport
             }
             // directory:
             $object_path = '';
-            if ( in_array(pathinfo($new_name, PATHINFO_EXTENSION), array('doc', 'pdf', 'docx', 'csv', 'xlsx')) ) {
+            if ( in_array(strtolower(pathinfo($new_name, PATHINFO_EXTENSION)), array('doc', 'pdf', 'docx', 'csv', 'xlsx')) ) {
                 $object_path = 'docs'.DIRECTORY_SEPARATOR;
             }
             $content = ($remote ? $this->getRemoteData($file) : file_get_contents($file));
-            return $this->mediaSource->createObject($object_path, $new_name, $content);
+            $file = rawurldecode($this->mediaSource->createObject($object_path, $new_name, $content));
+
+            $basePath = $this->mediaSource->getBasePath($file);
+            $baseUrl = $this->mediaSource->getBaseUrl($file);
+            $file = str_replace($basePath,$baseUrl,$file);
+            if ( $file !== false ) {
+                $this->modx->importx->log('info', 'File transferred to: ' . $file);
+            }
+            return $file;
         }
         return false;
     }

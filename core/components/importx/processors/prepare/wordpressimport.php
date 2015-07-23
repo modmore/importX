@@ -385,7 +385,7 @@ class WordpressImport
      */
     protected function cleanFilename($filepath)
     {
-        $filename = pathinfo($filepath, PATHINFO_FILENAME);
+        $filename = strtolower(pathinfo($filepath, PATHINFO_FILENAME));
         $filename = preg_replace('/[^a-z0-9-]/', '', str_replace(' ', '-', $filename)).'.'.pathinfo($filepath, PATHINFO_EXTENSION);
         return $filename;
     }
