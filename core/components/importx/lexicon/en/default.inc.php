@@ -42,6 +42,7 @@ $_lang['importx.csvfile'] = 'Data file upload';
 $_lang['importx.wordpress'] = 'Wordpress XML export';
 $_lang['importx.mediasource'] = 'Mediasource ID to upload Wordpress images to';
 $_lang['importx.template'] = 'Default Template ID for Wordpress';
+$_lang['importx.template_map'] = 'Map WP templates to MODX ex: default:1,sidebar:2';
 $_lang['importx.separator'] = 'Separator';
 $_lang['importx.tab.settings'] = 'Default Settings';
 $_lang['importx.tab.settings.desc'] = 'Specify the default settings to be used. You may override these per record by referencing the fieldname in your CSV formatted values.';

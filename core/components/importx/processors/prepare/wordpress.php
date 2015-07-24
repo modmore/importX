@@ -47,6 +47,14 @@ class Wordpress extends WordpressImport
                 }
             }
         }
+        if ( isset($_POST['template_map']) ) {
+            $matches = explode(',', trim($_POST['template_map']));
+            foreach ( $matches as $match ) {
+                list($wp_temp, $modx_template_id) = explode(':', $match);
+                $this->setTemplateMapMatch(trim($wp_temp), trim($modx_template_id));
+            }
+
+        }
         $this->config = array(
             // From Media Source:
             'asset_path' => '',

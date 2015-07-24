@@ -185,6 +185,14 @@ importX.panel.createImport = function(config) {
                         allowBlank: true
                     },{
                         xtype: 'textfield',
+                        fieldLabel: _('importx.template_map'),
+                        name:  'template_map',
+                        id: 'importx-import-template-map',
+                        anchor: '100%',
+                        allowBlank: true
+                    },
+                    {
+                        xtype: 'textfield',
                         fieldLabel: _('importx.mediasource'),
                         name:  'mediasource',
                         id: 'importx-import-mediasource',

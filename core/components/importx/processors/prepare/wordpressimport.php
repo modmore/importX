@@ -15,6 +15,10 @@ class WordpressImport
      */
     protected $allowed_downloads = array('pdf', 'doc', 'docx', 'txt', 'csv', 'xlsx',
                 'png', 'jpg', 'jpeg', 'gif');
+    /**
+     * @var array $wp_template_map ~ array('WP-Template-Name' => MODX-Template-ID)
+     */
+    protected $wp_template_map = array();
 
     public function __construct()
     {
@@ -185,13 +189,21 @@ class WordpressImport
         if (empty($pub_date)) {
             $pub_date = strtotime((string)$wp->post_date);
         }
-
+        $wp_template = $this->config['template'];
+        foreach ($post->children('wp',true)->postmeta as $wpm) {
+            if ($wpm->meta_key == "_wp_page_template") {
+                $wp_temp = $this->parseContent((string)$wpm->meta_value);
+                if ( isset($this->wp_template_map[$wp_temp]) ) {
+                    $wp_template = $this->wp_template_map[$wp_temp];
+                }
+            }
+        }
         $data = array(
             'parent' => $this->config['parent'],//$this->container->get('id'),
             'pagetitle' => $this->parseContent((string)$post->title),
             'description' => $this->parseContent((string)$post->description),
             'alias' => $this->parseContent((string)$wp->post_name),
-            'template' => $this->config['template'],
+            'template' => $wp_template,
             'published' => $this->parsePublished($post),
             'publishedon' => $pub_date,
             'publishedby' => $creator,
@@ -337,6 +349,17 @@ class WordpressImport
         //$content = $dom->saveHTML();
         $content = substr($dom->saveXML($dom->getElementsByTagName('div')->item(0)), 5, -6);
         return $content;
+    }
+
+    /**
+     * @param string $wp_template
+     * @param int $modx_template_id
+     */
+    public function setTemplateMapMatch($wp_template, $modx_template_id)
+    {
+        if (is_numeric($modx_template_id)) {
+            $this->wp_template_map[$wp_template] = $modx_template_id;
+        }
     }
     /**
      * @param $new_name
