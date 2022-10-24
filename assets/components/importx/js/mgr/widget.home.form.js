@@ -31,7 +31,7 @@ importX.page.createImport = function(config) {
             process: 'import',
             text: _('importx.startbutton'), 
             handler: function() {
-                if (this.console == null || this.console == undefined) {
+                if (this.console === null || typeof this.console === 'undefined') {
                     this.console = MODx.load({
                        xtype: 'modx-console'
                        ,register: register
@@ -97,7 +97,6 @@ importX.panel.createImport = function(config) {
                 bodyCssClass: 'panel-desc'
             },{
                 xtype: 'modx-tabs',
-                cls: 'main-wrapper',
                 deferredRender: false,
                 forceLayout: true,
                 defaults: {

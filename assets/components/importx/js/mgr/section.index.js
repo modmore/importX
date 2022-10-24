@@ -21,11 +21,6 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-Ext.onReady(function() {
-    Ext.QuickTips.init();
-    MODx.load({ xtype: 'importx-page-home'});
-});
- 
 importX.page.Home = function(config) {
     config = config || {};
     Ext.applyIf(config,{
