@@ -92,9 +92,7 @@ importX.panel.createImport = function(config) {
             ,autoHeight: true
             ,buttonAlign: 'center'
             ,items: [{
-                html: '<p>'+_('importx.desc')+'</p>',
-                border: false,
-                bodyCssClass: 'panel-desc'
+                html: '<div class="importx-page-desc"><p>'+_('importx.desc')+'</p></div>',
             },{
                 xtype: 'modx-tabs',
                 deferredRender: false,
