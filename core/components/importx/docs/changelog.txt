@@ -1,3 +1,9 @@
+++ ImportX 1.2.0-pl (October 27, 2022)
++++++++++++++++++++++++++++++++++++++++
+- MODX 3 compatability
+- Refactor to modernise controllers and processors
+- Tweaks to manager page layout
+
 ++ ImportX 1.1.1-pl (January 29, 2014)
 +++++++++++++++++++++++++++++++++++++++
 #50 Issue saving TVs on update (thanks @jpdevries)

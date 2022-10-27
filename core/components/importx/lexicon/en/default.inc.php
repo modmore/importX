@@ -27,6 +27,7 @@
 $_lang['importx'] = 'ImportX';
 $_lang['importx.description'] = 'Import your CSV formatted data into new Resources';
 $_lang['importx.desc'] = 'This component can be used to import CSV formatted files into new MODX Resources. Simply choose a parent to use and enter your CSV formatted information. The default separator is a semi-colon.';
+$_lang['importx.menu_desc'] = 'Create MODX resources from CSV files';
 $_lang['importx.form.basic'] = 'Basic import';
 $_lang['importx.startbutton'] = 'Start import';
 $_lang['importx.importsuccess'] = 'Succesfully imported resources into MODX.';

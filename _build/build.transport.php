@@ -13,7 +13,7 @@ set_time_limit(0);
 /* define package names */
 define('PKG_NAME','ImportX');
 define('PKG_NAME_LOWER','importx');
-define('PKG_VERSION','1.1.1');
+define('PKG_VERSION','1.2.0');
 define('PKG_RELEASE','pl');
 
 /* define build paths */

@@ -24,22 +24,22 @@
  */
 class importX {
     public $modx;
-    public $config = array();
+    public $config = [];
     public $data = '';
     public $type = 'csv';
     /* @var prepareImport $prepClass*/
     private $prepClass = null;
-    public $preparedData = array();
-    public $errors = array();
-    public $defaults = array();
-    public $post = array();
+    public $preparedData = [];
+    public $errors = [];
+    public $defaults = [];
+    public $post = [];
     
-    function __construct (modX &$modx,array $config = array()) {
-        $this->modx =& $modx;
+    function __construct (modX $modx, array $config = []) {
+        $this->modx = $modx;
  
         $basePath = $this->modx->getOption('importx.core_path',$config,$this->modx->getOption('core_path').'components/importx/');
         $assetsUrl = $this->modx->getOption('importx.assets_url',$config,$this->modx->getOption('assets_url').'components/importx/');
-        $this->config = array_merge(array(
+        $this->config = array_merge([
             'basePath' => $basePath,
             'corePath' => $basePath,
             'modelPath' => $basePath.'model/',
@@ -51,7 +51,7 @@ class importX {
             'connectorUrl' => $assetsUrl.'connector.php',
             
             'separator' => ';'
-        ),$config);
+        ],$config);
         $this->modx->lexicon->load('importx:default');
         
         $this->type = $this->modx->getOption('importx.datatype',null,'csv');
@@ -66,12 +66,17 @@ class importX {
         $this->config['separator'] = (isset($this->post['separator']) && !empty($this->post['separator'])) ? $this->post['separator'] : $this->config['separator'];
     }
     
-    public function getData() {
+    public function getData(): ?string
+    {
         // Handle file uploads
         if (!empty($_FILES['csv-file']['name']) && !empty($_FILES['csv-file']['tmp_name'])) {
-            $this->log('info',$this->modx->lexicon('importx.log.fileuploadfound',array('filename' => $_FILES['csv-file']['name'])));
+            $this->log('info', $this->modx->lexicon('importx.log.fileuploadfound', ['filename' => $_FILES['csv-file']['name']]));
             $data = file_get_contents($_FILES['csv-file']['tmp_name']);
-            if ($data === false) { return $this->log('error',$this->modx->lexicon('importx.err.fileuploadfailed')); }
+            if ($data === false) {
+                $msg = $this->modx->lexicon('importx.err.fileuploadfailed');
+                $this->log('error', $msg);
+                return $msg;
+            }
         }
         
         // Only if no file was uploaded check the manual input
@@ -82,12 +87,16 @@ class importX {
         
         // When no CSV detected (file or manual input), throw an error for that.
         if (!isset($data) || ($data === false) || empty($data)) {
-            return $this->log('error',$this->modx->lexicon('importx.err.nocsv'));
+            $msg = $this->modx->lexicon('importx.err.nocsv');
+            $this->log('error', $msg);
+            return $msg;
         }
         
         // Check a minimum length-ish (debatable - might be a useless check really)
         if (strlen($data) < 10) {
-            return $this->log('error',$this->modx->lexicon('importx.err.invalidcsv'),true);
+            $msg = $this->modx->lexicon('importx.err.invalidcsv');
+            $this->log('error', $msg);
+            return $msg;
         }
         
         $this->data = $data;
@@ -113,8 +122,9 @@ class importX {
         }
     }
     
-    public function prepareData() {
-        $file = $this->config['processorsPath'].'prepare/'.$this->type.'.php';
+    public function prepareData()
+    {
+        $file = $this->config['processorsPath'] . 'prepare/' . $this->type . '.php';
         if (file_exists($file)) {
             $class = include $file;
             if ($class) {
@@ -122,22 +132,26 @@ class importX {
                 $this->preparedData = $this->prepClass->process();
                 if (is_array($this->preparedData)) {
                     return $this->preparedData;
-                } else {
+                }
+                else {
                     foreach ($this->errors as $err) {
                         $this->log('error',$err);
                     }
+
                     return false;
                 }
             }
         }
+
         $this->log('error',$this->modx->lexicon('importx.log.classnf'));
         return false;
     }
 
-    private function getDefaults() {
-        $this->defaults['published'] = (isset($this->post['published']) && $this->post['published'] == 'on') ? true : false;
-        $this->defaults['searchable'] = (isset($this->post['searchable']) && $this->post['searchable'] == 'on') ? true : false;
-        $this->defaults['hidemenu'] = (isset($this->post['hidemenu']) && $this->post['hidemenu'] == 'on') ? true : false;
+    private function getDefaults(): void
+    {
+        $this->defaults['published'] = isset($this->post['published']) && $this->post['published'] === 'on';
+        $this->defaults['searchable'] = isset($this->post['searchable']) && $this->post['searchable'] === 'on';
+        $this->defaults['hidemenu'] = isset($this->post['hidemenu']) && $this->post['hidemenu'] === 'on';
         $this->defaults['context_key'] = 'web';
         $this->defaults['parent'] = '';
         
@@ -158,15 +172,17 @@ class importX {
         }
     }
 
-    private function setExecutionLimit() {
-        /* Set a time out limit */
+    private function setExecutionLimit(): void
+    {
+        /* Set a timeout limit */
         if (ini_get('safe_mode')) {
             $this->log('warn',$this->modx->lexicon('importx.log.safemodeon'));
-        } else {
+        }
+        else {
             set_time_limit(0);
             $limit = ini_get('max_execution_time');
             $limit = ($limit > 0) ? $limit : $this->modx->lexicon('importx.infinite');
-            $this->log('info',$this->modx->lexicon('importx.log.timelimit',array('limit' => $limit)));
+            $this->log('info',$this->modx->lexicon('importx.log.timelimit', ['limit' => $limit]));
         }
     }
 }

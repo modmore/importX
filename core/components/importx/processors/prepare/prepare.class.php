@@ -13,18 +13,18 @@ class prepareImport {
     }
     function process() {
         /* Do your processing here, returning an array with all the properly formatted data */
-        return array(
-            array(
+        return [
+            [
                 'pagetitle' => 'This is a simple array',
                 'longtitle' => 'This is a simple array to show how to present the data',
                 'tv2' => 'Including TV values'
-            ),
-            array(
+            ],
+            [
                 'pagetitle' => 'This is a simple array',
                 'longtitle' => 'This is a simple array to show how to present the data',
                 'tv2' => 'Including TV values'
-            ),
-        );
+            ],
+        ];
     }
 }
 

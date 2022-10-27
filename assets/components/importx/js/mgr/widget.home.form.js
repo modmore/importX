@@ -31,21 +31,23 @@ importX.page.createImport = function(config) {
             process: 'import',
             text: _('importx.startbutton'), 
             handler: function() {
-                if (this.console == null || this.console == undefined) {
-                    this.console = MODx.load({
-                       xtype: 'modx-console'
-                       ,register: register
-                       ,topic: topic
-                       ,show_filename: 0
-                       ,listeners: {
-                         'shutdown': {fn:function() {
-                             Ext.getCmp('modx-layout').refreshTrees();
-                         },scope:this}
-                       }
-                    });
-                } else {
-                    this.console.setRegister(register, topic);
+                // Destroy any previously loaded console, so we can load a fresh one without errors.
+                if (typeof this.console !== 'undefined') {
+                    this.console.destroy();
                 }
+
+                this.console = MODx.load({
+                   xtype: 'modx-console'
+                   ,register: register
+                   ,topic: topic
+                   ,show_filename: 0
+                   ,listeners: {
+                     'shutdown': {fn:function() {
+                         Ext.getCmp('modx-layout').refreshTrees();
+                     },scope:this}
+                   }
+                });
+
                 this.console.show(Ext.getBody());
                 Ext.getCmp('importx-panel-import').form.submit({
                     success:{fn:function() {
@@ -92,12 +94,9 @@ importX.panel.createImport = function(config) {
             ,autoHeight: true
             ,buttonAlign: 'center'
             ,items: [{
-                html: '<p>'+_('importx.desc')+'</p>',
-                border: false,
-                bodyCssClass: 'panel-desc'
+                html: '<div class="importx-page-desc"><p>'+_('importx.desc')+'</p></div>',
             },{
                 xtype: 'modx-tabs',
-                cls: 'main-wrapper',
                 deferredRender: false,
                 forceLayout: true,
                 defaults: {
