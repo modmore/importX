@@ -42,14 +42,14 @@ class importX {
         $this->config = array_merge([
             'basePath' => $basePath,
             'corePath' => $basePath,
-            'modelPath' => $basePath.'model/',
-            'processorsPath' => $basePath.'processors/',
-            'chunksPath' => $basePath.'elements/chunks/',
-            'jsUrl' => $assetsUrl.'js/',
-            'cssUrl' => $assetsUrl.'css/',
+            'modelPath' => $basePath . 'model/',
+            'processorsPath' => $basePath . 'processors/',
+            'chunksPath' => $basePath . 'elements/chunks/',
+            'jsUrl' => $assetsUrl . 'js/',
+            'cssUrl' => $assetsUrl . 'css/',
             'assetsUrl' => $assetsUrl,
-            'connectorUrl' => $assetsUrl.'connector.php',
-            
+            'connectorUrl' => $assetsUrl . 'connector.php',
+            'templatesPath' => $basePath . 'templates/',
             'separator' => ';'
         ],$config);
         $this->modx->lexicon->load('importx:default');
