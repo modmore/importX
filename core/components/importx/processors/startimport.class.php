@@ -59,7 +59,11 @@ class StartImport extends modProcessor {
         $resourceCount = 0;
 
         $processor = 'resource/' . $this->modx->getOption('importx.processor', null, 'create');
+
         foreach ($lines as $line) {
+            // Set default class_key if MODX 3.x, and no value is specified
+            $line = $this->setDefaultClassKey($line);
+
             /* @var modProcessorResponse $response */
             $response = $this->modx->runProcessor($processor, $line);
             if ($response->isError()) {
@@ -88,6 +92,20 @@ class StartImport extends modProcessor {
         sleep(1);
 
         return $this->success();
+    }
+
+    /**
+     * @param array $record
+     * @return array
+     */
+    protected function setDefaultClassKey(array $record): array
+    {
+        $modxVersion = $this->modx->getVersionData();
+        if (version_compare($modxVersion['full_version'], '3.0.0-dev', '>=') && empty($line['class_key'])) {
+            $record['class_key'] = 'MODX\Revolution\modDocument';
+        }
+
+        return $record;
     }
 }
 return 'StartImport';
