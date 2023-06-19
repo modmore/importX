@@ -1,3 +1,7 @@
+++ ImportX 1.2.1-pl (June 19, 2023)
++++++++++++++++++++++++++++++++++++++++
+- Fix error when updating a resource in MODX 3.x if no class_key was specified [d669f04]
+
 ++ ImportX 1.2.0-pl (October 27, 2022)
 +++++++++++++++++++++++++++++++++++++++
 - MODX 3 compatability
