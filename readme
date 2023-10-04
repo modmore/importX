@@ -22,5 +22,11 @@ example heading above.
 CSV can be imported from manual input (copy/paste) or
 from file upload.
 
+# Settings
+## importx.datatype
+  * "csv": default datatype
+  * "csvplus": improved parse of csv (multiline, escape, enclosure)
+## importx.processor
+
 ImportX has been developed with funding by Working Party,
 a Sydney based Digital Agency.
